@@ -4,7 +4,7 @@
   "description": "react app",
   "main": "index.js",
   "scripts": {
-    "start":
+    "start": "node index.js",
     "start-dev": "concurrently \"webpack-dev-server --hot --inline --open\" \"nodemon index.js\"",
     "clean": "rimraf dist",
     "build": "webpack --mode production",
