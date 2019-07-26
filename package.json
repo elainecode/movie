@@ -7,15 +7,13 @@
     "start": "concurrently \"webpack-dev-server --hot --inline --open\" \"nodemon index.js\"",
     "clean": "rimraf dist",
     "build": "webpack --mode production",
-    "heroku-postbuild": "npm install && npm run build"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "proxy": "http://localhost:3000",
   "repository": {
     "type": "git",
     "url": "git@git.epam.com:Elaine_Onuegbe/Movie-Project.git"
   },
-  "author": "Elaine O",
+  "author": "Elaine Onuegbe Elaine_Onuegbe@epam",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
