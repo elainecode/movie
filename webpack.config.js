@@ -23,7 +23,17 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: ["react-hot-loader/webpack", "babel-loader"]
+        loader: [
+          "react-hot-loader/webpack",
+          "babel-loader"
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   },
