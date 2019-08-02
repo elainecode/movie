@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 const Header = () => {
     return (
-        <div>
+        <div id='header'>
+            <div id='logo'><p>netflixroulette</p></div>
             <Link to='/'>
-            <button>Home Page</button>
+            <button className='temp'>Home Page</button>
             </Link>
             <Link to='/films/cdevev'>
-            <button>Selected Film Page</button>
-            </Link>
-            
+            <button className='temp'>Selected Film Page</button>
+            </Link>         
         </div>
     )
 }

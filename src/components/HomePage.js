@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Search from './Search'
+import Filter from './Filter'
 import FilmList from './FilmList'
+import '../styles/homepage.css'
 
 
 class HomePage extends Component {
@@ -13,11 +15,11 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>
-                <h4>Home Page</h4>
+            <>
                 <Search></Search>
+                <Filter></Filter>
                 <FilmList></FilmList>
-            </div>
+            </>
         )
     }
 }

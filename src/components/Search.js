@@ -3,11 +3,8 @@ import Form from './Form'
 
 const Search = () => {
     return (
-        <div>
-            <p>This is the Search Container:</p>
-            
-            <Form></Form>
-            
+        <div id='search'>
+            <Form></Form> 
         </div>
     )
 }

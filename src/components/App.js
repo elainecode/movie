@@ -24,7 +24,8 @@ class App extends Component {
         const { greeting }  = this.state
         return ( 
             <>
-            <Header></Header>   
+            <Header></Header>
+            <div id='content'>   
             <Route exact path='/' component={routerProps =>
                 <HomePage
                     {...routerProps}
@@ -35,6 +36,7 @@ class App extends Component {
                     {...routerProps}
                 />}
             />
+            </div>
             <Footer></Footer>
             </>
             );

@@ -1,8 +1,8 @@
 import React from 'react'
 const Footer = () => {
     return (
-        <div>
-            <p>This is a Footer.</p>
+        <div id='footer'>
+            <p>netflixroulette</p>
         </div>
     )
 }
