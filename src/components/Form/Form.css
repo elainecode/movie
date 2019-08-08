@@ -1,0 +1,21 @@
+
+.form-title {
+    grid-area: form-title;
+}
+
+.form-input {
+    grid-area: form-input;
+}
+
+.form-button-a { grid-area: form-button-a;}
+.form-button-b { grid-area: form-button-b;}
+.form-button-c { grid-area: form-button-c;}
+.form-button-d { grid-area: form-button-d;}
+
+.align {
+    margin: auto;
+}
+
+.title-text {
+    font-weight: 700;
+}
