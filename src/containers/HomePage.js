@@ -11,6 +11,7 @@ class HomePage extends Component {
   }
 
   render() {
+    const { films, findGenre } = this.props;
     return (
       <>
         <div className="content-background">
@@ -18,7 +19,7 @@ class HomePage extends Component {
           <Search />
         </div>
         <Filter />
-        <FilmList />
+        <FilmList films={films} findGenre={findGenre} />
       </>
     );
   }
