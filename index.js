@@ -4,9 +4,9 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const data = {
-  hello: 'world',
-};
+require('dotenv').config();
+
+const { API_KEY } = process.env;
 
 app.use(cors());
 app.use(
@@ -17,8 +17,9 @@ app.use(
 );
 
 app.get('/api', (req, res) => {
-  console.log(data);
-  res.json(data);
+  res.json({
+    API_KEY,
+  });
 });
 
 app.listen(port, () =>

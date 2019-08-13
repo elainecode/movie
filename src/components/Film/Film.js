@@ -10,24 +10,26 @@ import {
 } from '@material-ui/core';
 import './Film.css';
 
-const Film = () => {
+const Film = ({ title, year, id, image_id, genres }) => {
   return (
     <>
       <Card>
         <CardActionArea>
-          <Link to="/films/wwwd">
+          <Link to={`/films/${id}`}>
             <CardMedia
               className="list-item-image"
-              image="http://via.placeholder.com/100x300"
-              title="film poster image"
+              image={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image_id}`}
+              title={title}
             />
           </Link>
           <CardContent>
             <div className="card-content-top">
-              <Typography variant="subtitle2">Film Title</Typography>
-              <Typography variant="subtitle2">Year</Typography>
+              <Typography variant="subtitle2">{title}</Typography>
+              <Typography variant="subtitle2">{year}</Typography>
             </div>
-            <Typography variant="p">Film Genre</Typography>
+            <Typography variant="body2">
+              {genres.join(', ')}
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Card>

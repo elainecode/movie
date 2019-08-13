@@ -11,6 +11,7 @@ class SelectedFilmPage extends Component {
   }
 
   render() {
+    const { films, genres, findGenre } = this.props;
     return (
       <>
         <div className="content-background">
@@ -18,7 +19,7 @@ class SelectedFilmPage extends Component {
           <FilmDetails id={this.props.match.params.id} />
         </div>
         <Filter />
-        <FilmList />
+        <FilmList films={films} findGenre={findGenre} />
       </>
     );
   }
