@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Filter from '../components/Filter';
@@ -25,4 +26,11 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapDispatchToProps = dispatch => ({
+  // map dispatch to action creators to props...
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(HomePage);

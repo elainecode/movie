@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import FilmDetails from '../components/FilmDetails';
 import FilmList from '../components/FilmList';
@@ -25,4 +26,14 @@ class SelectedFilmPage extends Component {
   }
 }
 
-export default SelectedFilmPage;
+const mapStateToProps = state => ({
+  // map state to component props...
+});
+const mapDispatchToProps = dispatch => ({
+  // map dispatch to action creators to props...
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SelectedFilmPage);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HomePage from './HomePage';
@@ -67,4 +68,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  // map state to component props...
+});
+
+export default connect(mapStateToProps)(App);
