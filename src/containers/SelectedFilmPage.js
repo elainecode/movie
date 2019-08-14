@@ -6,11 +6,6 @@ import FilmList from '../components/FilmList';
 import Filter from '../components/Filter';
 
 class SelectedFilmPage extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   render() {
     const { films, genres, findGenre } = this.props;
     return (

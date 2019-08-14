@@ -1,12 +1,15 @@
 import React from 'react';
 import Form from '../Form';
-import './Search.css'
+import './Search.css';
 
-const Search = () => {
+const Search = ({ updateSearchForm, updateSearchInput }) => {
   return (
-    <div className="search-container">
-      <Form />
-    </div>
+    <>
+      <Form
+        updateSearchForm={updateSearchForm}
+        updateSearchInput={updateSearchInput}
+      />
+    </>
   );
 };
 

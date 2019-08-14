@@ -7,20 +7,8 @@ import HomePage from './HomePage';
 import SelectedFilmPage from './SelectedFilmPage';
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
-  async componentDidMount() {
+  componentDidMount() {
     this.props.getMovieData();
-    // const { API_KEY } = await (await fetch('/api')).json();
-    // const { genres } = await (await fetch(
-    //   `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`,
-    // )).json();
-    // const { results: films } = await (await fetch(
-    //   `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc`,
-    // )).json();
-    // this.setState({ genres, films });
   }
 
   findGenre = array => {
@@ -32,7 +20,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props.films)
     const { films } = this.props;
     const { findGenre } = this;
     return (
@@ -68,11 +55,9 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     films: state.films,
     genres: state.genres,
-    selectedFilm: state.selectedFilm
   };
 };
 

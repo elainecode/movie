@@ -1,4 +1,17 @@
-
+.form-container {
+    color: #fff;
+    font-size: small;
+    font-weight: 500;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-gap: 1em;
+    grid-template-areas: 
+        "form-title form-title . . . . . ."
+        "form-input form-input  form-input  form-input  form-input  form-input form-input ."
+        "form-button-a form-button-b form-button-c . . form-button-d form-button-d form-buttom-d";
+}
 .form-title {
     grid-area: form-title;
 }
