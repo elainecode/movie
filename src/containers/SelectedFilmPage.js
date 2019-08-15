@@ -10,10 +10,8 @@ class SelectedFilmPage extends Component {
     const { films, genres, findGenre } = this.props;
     return (
       <>
-        <div className="content-background">
-          <Header />
-          <FilmDetails id={this.props.match.params.id} />
-        </div>
+        <Header />
+        <FilmDetails id={this.props.match.params.id} />
         <Filter />
         <FilmList films={films} findGenre={findGenre} />
       </>

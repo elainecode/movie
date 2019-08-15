@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateInput, updateForm } from '../actions';
+import { updateForm, getSeachData } from '../actions';
 import Header from '../components/Header';
-import Search from '../components/Search';
 import Filter from '../components/Filter';
 import FilmList from '../components/FilmList';
 
 class HomePage extends Component {
-  updateSearchForm = e => {
+  searchFilms = e => {
     e.preventDefault();
-    const { updateForm, input } = this.props;
-    updateForm(input);
+    const { getSeachData, form } = this.props;
+    getSeachData(form);
   };
 
-  updateSearchInput = e => {
+  updateSearchQuery = e => {
     e.preventDefault();
-    const { updateInput } = this.props;
-    updateInput(e.target.value);
+    const { updateForm } = this.props;
+    updateForm(e.target.value);
   };
 
   render() {
-    const { films, findGenre, input } = this.props;
-    const { updateSearchForm, updateSearchInput } = this;
+    const { films, findGenre } = this.props;
+    const { updateSearchQuery, searchFilms } = this;
     return (
       <>
-        <div className="content-background">
-          <Header />
-          <Search
-            updateSearchForm={updateSearchForm}
-            updateSearchInput={updateSearchInput}
-          />
-        </div>
+        <Header
+          updateSearchQuery={updateSearchQuery}
+          searchFilms={searchFilms}
+        />
         <Filter count={films.length || 0} />
         <FilmList films={films} findGenre={findGenre} />
       </>
@@ -40,12 +36,11 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    input: state.form.input,
-    searchBy: state.form.searchBy,
+    form: state.form,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateInput, updateForm },
+  { updateForm, getSeachData },
 )(HomePage);

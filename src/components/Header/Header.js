@@ -1,18 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
-import './header.css';
+import {
+  Button,
+  AppBar,
+  IconButton,
+  Typography,
+  InputBase,
+  Menu,
+  MenuItem,
+} from '@material-ui/core';
+import Search from '../Search';
 
-const Header = () => {
+const Header = ({ updateSearchQuery, searchFilms }) => {
   return (
-    <div className="header">
-      <p>netflixroulette</p>
-      <Link to="/">
-        <Button id="header-button" variant="contained" size="medium">
-          SEARCH
-        </Button>
-      </Link>
-    </div>
+    <>
+      <AppBar position="static">
+        <Typography variant="h6" noWrap>
+          The MovieDB
+        </Typography>
+        <Search
+          updateSearchQuery={updateSearchQuery}
+          searchFilms={searchFilms}
+        />
+      </AppBar>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-const INITIAL_STATE = null;
+const INITIAL_STATE = [];
 
 function selectedFilmReducer(state = INITIAL_STATE, action) {
   switch (action.type) {

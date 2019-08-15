@@ -1,4 +1,5 @@
-export const FETCH_DATA = 'FETCH_DATA';
+export const GET_DISCOVER_FILMS = 'GET_DISCOVER_FILMS';
+export const GET_DISCOVER_GENRES = 'GET_DISCOVER_GENRES';
 export const SELECT_FILM = 'SELECT_FILM';
-export const UPDATE_INPUT = 'UPDATE_INPUT';
-export const GET_FILMS = 'GET_FILMS';
+export const UPDATE_FORM = 'UPDATE_FORM';
+export const GET_SEARCH_FILMS = 'GET_SEARCH_FILMS';

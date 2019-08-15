@@ -1,13 +1,12 @@
 import React from 'react';
 import Form from '../Form';
-import './Search.css';
 
-const Search = ({ updateSearchForm, updateSearchInput }) => {
+const Search = ({ updateSearchQuery, searchFilms }) => {
   return (
     <>
       <Form
-        updateSearchForm={updateSearchForm}
-        updateSearchInput={updateSearchInput}
+        updateSearchQuery={updateSearchQuery}
+        searchFilms={searchFilms}
       />
     </>
   );

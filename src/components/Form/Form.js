@@ -3,53 +3,24 @@ import {
   FormControl,
   InputLabel,
   Input,
+  InputBase,
   FilledInput,
   Button,
   TextField,
   Typography,
 } from '@material-ui/core';
-import './Form.css';
 
-const Form = ({ updateSearchForm, updateSearchInput }) => {
+const Form = ({ updateSearchQuery, searchFilms }) => {
   return (
     <>
-      <form className="form-container" onSubmit={updateSearchForm}>
-        <div className="form-title">
-          <Typography variant="subtitle2">FIND YOUR MOVIE</Typography>
-        </div>
+      <form onSubmit={searchFilms}>
         <FormControl className="form-input" margin="normal" fullWidth>
-          <FilledInput
-            onChange={updateSearchInput}
+          <InputBase
+            placeholder="Search for a movie"
+            onChange={updateSearchQuery}
             id="component-filled"
           />
         </FormControl>
-        <div className="form-button-a align">
-          <p>SEARCH BY</p>
-        </div>
-        <Button
-          className="form-button-b"
-          variant="contained"
-          color="secondary"
-          size="small"
-        >
-          TITLE
-        </Button>
-        <Button
-          className="form-button-c"
-          variant="contained"
-          size="small"
-        >
-          DIRECTOR
-        </Button>
-        <Button
-          type="submit"
-          className="form-button-d"
-          variant="contained"
-          color="secondary"
-          size="small"
-        >
-          SEARCH
-        </Button>
       </form>
     </>
   );

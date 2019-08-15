@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { getMovieData } from '../actions';
+import { getDiscoverData } from '../actions';
 import Footer from '../components/Footer';
 import HomePage from './HomePage';
 import SelectedFilmPage from './SelectedFilmPage';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getMovieData();
+    this.props.getDiscoverData();
   }
 
-  findGenre = array => {
-    const { genres } = this.props;
-    const genreNames = genres
-      .filter(item => array.indexOf(item.id) != -1)
-      .map(item => item.name);
-    return genreNames;
-  };
+  findGenre = array => array.map(id => this.props.genres[id]);
 
   render() {
     const { films } = this.props;
@@ -63,5 +57,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getMovieData },
+  { getDiscoverData },
 )(App);
