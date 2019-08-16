@@ -32,3 +32,10 @@
 .title-text {
     font-weight: 700;
 }
+.form-style {
+    width: 80%;
+}
+.form-style input,
+.form-style span {
+    color: #fff;
+}

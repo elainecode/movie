@@ -8,20 +8,24 @@ import {
   InputBase,
   Menu,
   MenuItem,
+  Toolbar,
 } from '@material-ui/core';
 import Search from '../Search';
+import './Header.css';
 
 const Header = ({ updateSearchQuery, searchFilms }) => {
   return (
     <>
-      <AppBar position="static">
-        <Typography variant="h6" noWrap>
-          The MovieDB
-        </Typography>
-        <Search
-          updateSearchQuery={updateSearchQuery}
-          searchFilms={searchFilms}
-        />
+      <AppBar className="header" position="sticky">
+        <Toolbar>
+          <Typography variant="h6" className="header-title">
+            The MovieDB
+          </Typography>
+          <Search
+            updateSearchQuery={updateSearchQuery}
+            searchFilms={searchFilms}
+          />
+        </Toolbar>
       </AppBar>
     </>
   );

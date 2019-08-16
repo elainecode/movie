@@ -1,11 +1,24 @@
 import React from 'react';
-import './Footer.css';
+import {
+  Button,
+  AppBar,
+  IconButton,
+  Typography,
+  InputBase,
+  Menu,
+  MenuItem,
+  Toolbar,
+} from '@material-ui/core';
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <p>netflixroulette</p>
-    </div>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="subtitle1">netflixroulette</Typography>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 

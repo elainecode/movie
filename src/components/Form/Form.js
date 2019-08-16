@@ -8,19 +8,24 @@ import {
   Button,
   TextField,
   Typography,
+  InputAdornment,
+  Icon,
 } from '@material-ui/core';
+import './Form.css';
 
 const Form = ({ updateSearchQuery, searchFilms }) => {
   return (
     <>
-      <form onSubmit={searchFilms}>
-        <FormControl className="form-input" margin="normal" fullWidth>
-          <InputBase
-            placeholder="Search for a movie"
-            onChange={updateSearchQuery}
-            id="component-filled"
-          />
-        </FormControl>
+      <form onSubmit={searchFilms} className="form-style">
+        <InputBase
+          fullWidth
+          placeholder="Search for a movie"
+          onChange={updateSearchQuery}
+          inputProps={{ 'aria-label': 'search' }}
+          startAdornment={
+             <InputAdornment position="start">  <Icon>search</Icon></InputAdornment>
+          }
+        />
       </form>
     </>
   );
