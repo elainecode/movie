@@ -1,5 +1,7 @@
-.list-item-image {
-    height: 450px;
+#list-item-image {
+    height: 400px;
+    background-size: 100% 100%;
+    background-position: unset;
 }
 
 

@@ -3,3 +3,5 @@ export const GET_DISCOVER_GENRES = 'GET_DISCOVER_GENRES';
 export const SELECT_FILM = 'SELECT_FILM';
 export const UPDATE_FORM = 'UPDATE_FORM';
 export const GET_SEARCH_FILMS = 'GET_SEARCH_FILMS';
+export const GET_API_KEY = 'GET_API_KEY';
+

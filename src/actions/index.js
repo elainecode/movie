@@ -6,6 +6,8 @@ import {
   UPDATE_FORM,
 } from './actionTypes';
 
+import { config } from './config';
+
 export const getDiscoverFilms = films => ({
   type: GET_DISCOVER_FILMS,
   films,
@@ -32,21 +34,15 @@ export const updateForm = form => ({
 });
 
 export const getDiscoverData = () => async dispatch => {
-  const { API_KEY } = await (await fetch('/api')).json();
-  const { genres } = await (await fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`,
-  )).json();
-  const { results: films } = await (await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc`,
-  )).json();
+  const API_KEY = await config.setApiKey();
+  const { genres, films } = await config.getDiscoverData(API_KEY);
+  dispatch(config.getApiKey(API_KEY));
   dispatch(getDiscoverFilms(films));
   dispatch(getDiscoverGenres(genres));
 };
 
 export const getSeachData = query => async dispatch => {
-  const { API_KEY } = await (await fetch('/api')).json();
-  const { results: films } = await (await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}`,
-  )).json();
+  const API_KEY = await config.setApiKey();
+  const { films } = await config.getSearchData(API_KEY, query);
   dispatch(getSearchFilms(films));
 };

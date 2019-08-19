@@ -17,7 +17,7 @@ const Film = ({ title, year, id, image_id, genres }) => {
         <CardActionArea>
           <Link to={`/films/${id}`}>
             <CardMedia
-              className="list-item-image"
+              id="list-item-image"
               image={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image_id}`}
               title={title}
             />
