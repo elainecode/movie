@@ -5,7 +5,7 @@ import './FilmList.css';
 const FilmList = ({ films, findGenre }) => {
   return (
     <div className="list">
-      {films.length > 0 &&
+      {films.length &&
         films.map(film => {
           return (
             <Film
@@ -13,7 +13,7 @@ const FilmList = ({ films, findGenre }) => {
               title={film.title}
               year={film.release_date.slice(0, 4)}
               id={film.id}
-              image_id={film.poster_path}
+              image_id={film.poster_path || film.backdrop_path}
               genres={findGenre(film.genre_ids)}
             />
           );

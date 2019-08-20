@@ -15,7 +15,7 @@ const Footer = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="subtitle1">netflixroulette</Typography>
+          <Typography variant="subtitle1">The Movie DB</Typography>
         </Toolbar>
       </AppBar>
     </>
