@@ -1,11 +1,11 @@
 import { SELECT_FILM } from '../actions/actionTypes';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = {};
 
 function visitedFilmReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SELECT_FILM:
-      return [...state, action.id];
+      return { ...state, [action.film.id]: action.film };
     default:
       return state;
   }

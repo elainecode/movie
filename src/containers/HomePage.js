@@ -19,7 +19,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { films, findGenre, addVisitedId } = this.props;
+    const { films, findGenre, clickFilm } = this.props;
     const { updateSearchQuery, searchFilms } = this;
     return (
       <>
@@ -31,7 +31,7 @@ class HomePage extends Component {
         <FilmList
           films={films}
           findGenre={findGenre}
-          addVisitedId={addVisitedId}
+          clickFilm={clickFilm}
         />
       </>
     );

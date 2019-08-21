@@ -23,9 +23,9 @@ export const getSearchFilms = films => ({
   films,
 });
 
-export const selectFilm = id => ({
+export const selectFilm = film => ({
   type: SELECT_FILM,
-  id,
+  film,
 });
 
 export const updateForm = form => ({
@@ -48,5 +48,7 @@ export const getSeachData = query => async dispatch => {
 };
 
 export const getSelectedData = id => async dispatch => {
-  dispatch(selectFilm(id));
+  const API_KEY = await config.setApiKey();
+  const film  = await config.getCreditsData(API_KEY, id);
+  dispatch(selectFilm(film));
 };

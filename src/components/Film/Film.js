@@ -16,16 +16,12 @@ const Film = ({
   id,
   image_id,
   genres,
-  addVisitedId,
+  clickFilm,
 }) => {
-  const clickFilm = e => {
-    e.preventDefault();
-    addVisitedId(id);
-  };
   return (
     <>
       <Card>
-        <CardActionArea onClick={clickFilm}>
+        <CardActionArea onClick={clickFilm(id)}>
           <Link to={`/films/${id}`}>
             <CardMedia
               id="list-item-image"

@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getSelectedData } from '../actions';
 import Header from '../components/Header';
 import FilmDetails from '../components/FilmDetails';
 import FilmList from '../components/FilmList';
 import Filter from '../components/Filter';
 
 class SelectedFilmPage extends Component {
-  findFilmById = id =>
-    this.props.films.find(film => id === film.id.toString());
+  componentDidMount() {}
+
+  findFilmById = id => {
+    const { visitedFilms, films } = this.props;
+    const key = parseInt(id);
+    return visitedFilms[key]
+      ? visitedFilms[key]
+      : films.find(item => item.id === key);
+  };
 
   render() {
     const {
@@ -15,22 +23,22 @@ class SelectedFilmPage extends Component {
       genres,
       visitedFilms,
       findGenre,
-      addVisitedId,
+      clickFilm,
     } = this.props;
 
     const { findFilmById } = this;
     const { id } = this.props.match.params;
-    const film = findFilmById(id);
-
+    const film = findFilmById(id)
+   
     return (
       <>
         <Header />
-        <FilmDetails film={film} />
+        <FilmDetails film={film || null} findGenre={findGenre} />
         <Filter />
         <FilmList
           films={films}
           findGenre={findGenre}
-          addVisitedId={addVisitedId}
+          clickFilm={clickFilm}
         />
       </>
     );
@@ -41,4 +49,7 @@ const mapStateToProps = state => ({
   visitedFilms: state.visitedFilms,
 });
 
-export default connect(mapStateToProps)(SelectedFilmPage);
+export default connect(
+  mapStateToProps,
+  { getSelectedData },
+)(SelectedFilmPage);

@@ -13,11 +13,14 @@ class App extends Component {
 
   findGenre = array => array.map(id => this.props.genres[id]);
 
-  addVisitedId = id => this.props.getSelectedData(id);
+  clickFilm = id => e => {
+    e.preventDefault();
+    this.props.getSelectedData(id);
+  };
 
   render() {
     const { films } = this.props;
-    const { findGenre, addVisitedId } = this;
+    const { findGenre, clickFilm } = this;
     return (
       <>
         <div className="content">
@@ -28,7 +31,7 @@ class App extends Component {
               <HomePage
                 films={films}
                 findGenre={findGenre}
-                addVisitedId={addVisitedId}
+                clickFilm={clickFilm}
                 {...routerProps}
               />
             )}
@@ -40,7 +43,7 @@ class App extends Component {
               <SelectedFilmPage
                 films={films}
                 findGenre={findGenre}
-                addVisitedId={addVisitedId}
+                clickFilm={clickFilm}
                 {...routerProps}
               />
             )}

@@ -2,7 +2,8 @@ import React from 'react';
 import Film from '../Film';
 import './FilmList.css';
 
-const FilmList = ({ films, findGenre, addVisitedId }) => {
+const FilmList = ({ films, findGenre, clickFilm }) => {
+  
   return (
     <div className="list">
       {films.length &&
@@ -15,7 +16,7 @@ const FilmList = ({ films, findGenre, addVisitedId }) => {
               id={film.id}
               image_id={film.poster_path || film.backdrop_path}
               genres={findGenre(film.genre_ids)}
-              addVisitedId={addVisitedId}
+              clickFilm={clickFilm}
             />
           );
         })}

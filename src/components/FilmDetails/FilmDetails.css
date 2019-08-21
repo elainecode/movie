@@ -1,13 +1,22 @@
 .film-details-container {
     width: 100%;
+    margin: 2em 0;
     display: grid;
-    grid-template-columns: repeat(2, 50fr);
+    grid-template-columns: repeat(2, 40fr);
+    grid-gap: 1em;
+    justify-content: center;
+    
 }
 
 .film-poster {
-
+    justify-self: end;
 }
 
 .film-info {
-    
+   display: flex;
+   flex-direction: column;
+}
+
+.film-overview {
+    width: 
 }
