@@ -27,7 +27,7 @@ class HomePage extends Component {
           updateSearchQuery={updateSearchQuery}
           searchFilms={searchFilms}
         />
-        <Filter count={films.length || 0} />
+        <Filter count={films.length && films.length} />
         <FilmList
           films={films}
           findGenre={findGenre}
