@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateForm, getSeachData } from '../actions';
+import { updateForm, getSeachData} from '../actions';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import FilmList from '../components/FilmList';
@@ -19,7 +19,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { films, findGenre } = this.props;
+    const { films, findGenre, addVisitedId } = this.props;
     const { updateSearchQuery, searchFilms } = this;
     return (
       <>
@@ -28,7 +28,11 @@ class HomePage extends Component {
           searchFilms={searchFilms}
         />
         <Filter count={films.length || 0} />
-        <FilmList films={films} findGenre={findGenre} />
+        <FilmList
+          films={films}
+          findGenre={findGenre}
+          addVisitedId={addVisitedId}
+        />
       </>
     );
   }

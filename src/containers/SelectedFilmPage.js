@@ -6,27 +6,39 @@ import FilmList from '../components/FilmList';
 import Filter from '../components/Filter';
 
 class SelectedFilmPage extends Component {
+  findFilmById = id =>
+    this.props.films.find(film => id === film.id.toString());
+
   render() {
-    const { films, genres, findGenre } = this.props;
+    const {
+      films,
+      genres,
+      visitedFilms,
+      findGenre,
+      addVisitedId,
+    } = this.props;
+
+    const { findFilmById } = this;
+    const { id } = this.props.match.params;
+    const film = findFilmById(id);
+
     return (
       <>
         <Header />
-        <FilmDetails id={this.props.match.params.id} />
+        <FilmDetails film={film} />
         <Filter />
-        <FilmList films={films} findGenre={findGenre} />
+        <FilmList
+          films={films}
+          findGenre={findGenre}
+          addVisitedId={addVisitedId}
+        />
       </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  // map state to component props...
-});
-const mapDispatchToProps = dispatch => ({
-  // map dispatch to action creators to props...
+  visitedFilms: state.visitedFilms,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SelectedFilmPage);
+export default connect(mapStateToProps)(SelectedFilmPage);

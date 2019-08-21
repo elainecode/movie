@@ -1,3 +1,13 @@
 .film-details-container {
-    color: #fff;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 50fr);
+}
+
+.film-poster {
+
+}
+
+.film-info {
+    
 }

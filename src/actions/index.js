@@ -46,3 +46,7 @@ export const getSeachData = query => async dispatch => {
   const { films } = await config.getSearchData(API_KEY, query);
   dispatch(getSearchFilms(films));
 };
+
+export const getSelectedData = id => async dispatch => {
+  dispatch(selectFilm(id));
+};

@@ -10,11 +10,22 @@ import {
 } from '@material-ui/core';
 import './Film.css';
 
-const Film = ({ title, year, id, image_id, genres }) => {
+const Film = ({
+  title,
+  year,
+  id,
+  image_id,
+  genres,
+  addVisitedId,
+}) => {
+  const clickFilm = e => {
+    e.preventDefault();
+    addVisitedId(id);
+  };
   return (
     <>
       <Card>
-        <CardActionArea>
+        <CardActionArea onClick={clickFilm}>
           <Link to={`/films/${id}`}>
             <CardMedia
               id="list-item-image"

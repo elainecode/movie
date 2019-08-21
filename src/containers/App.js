@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { getDiscoverData } from '../actions';
+import { getDiscoverData, getSelectedData } from '../actions';
 import Footer from '../components/Footer';
 import HomePage from './HomePage';
 import SelectedFilmPage from './SelectedFilmPage';
@@ -13,9 +13,11 @@ class App extends Component {
 
   findGenre = array => array.map(id => this.props.genres[id]);
 
+  addVisitedId = id => this.props.getSelectedData(id);
+
   render() {
     const { films } = this.props;
-    const { findGenre } = this;
+    const { findGenre, addVisitedId } = this;
     return (
       <>
         <div className="content">
@@ -26,6 +28,7 @@ class App extends Component {
               <HomePage
                 films={films}
                 findGenre={findGenre}
+                addVisitedId={addVisitedId}
                 {...routerProps}
               />
             )}
@@ -37,6 +40,7 @@ class App extends Component {
               <SelectedFilmPage
                 films={films}
                 findGenre={findGenre}
+                addVisitedId={addVisitedId}
                 {...routerProps}
               />
             )}
@@ -57,5 +61,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getDiscoverData },
+  { getDiscoverData, getSelectedData },
 )(App);
