@@ -1,15 +1,15 @@
 import {
-  GET_DISCOVER_FILMS,
-  GET_SEARCH_FILMS,
+  SEARCH_FILMS_SUCCESS,
+  DISCOVER_FILMS_SUCCESS,
 } from '../actions/actionTypes';
 
 const INITIAL_STATE = [];
 
 function filmReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case GET_DISCOVER_FILMS:
+    case DISCOVER_FILMS_SUCCESS:
       return action.films;
-    case GET_SEARCH_FILMS:
+    case SEARCH_FILMS_SUCCESS:
       return action.films;
     default:
       return state;

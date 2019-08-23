@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateForm, getSeachData} from '../actions';
+import { updateForm, loadSearchFilms } from '../actions';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import FilmList from '../components/FilmList';
@@ -8,8 +8,8 @@ import FilmList from '../components/FilmList';
 class HomePage extends Component {
   searchFilms = e => {
     e.preventDefault();
-    const { getSeachData, form } = this.props;
-    getSeachData(form);
+    const { loadSearchFilms, form } = this.props;
+    loadSearchFilms(form);
   };
 
   updateSearchQuery = e => {
@@ -46,5 +46,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateForm, getSeachData },
+  { updateForm, loadSearchFilms },
 )(HomePage);

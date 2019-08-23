@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { getDiscoverData, getSelectedData } from '../actions';
+import { loadDiscoverFilms, loadSelectedFilm } from '../actions';
+import { config } from '../middleware/config';
 import Footer from '../components/Footer';
 import HomePage from './HomePage';
 import SelectedFilmPage from './SelectedFilmPage';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getDiscoverData();
+    config.setApiKey()
+    this.props.loadDiscoverFilms();
   }
 
   findGenre = array => array.map(id => this.props.genres[id]);
 
   clickFilm = id => e => {
     e.preventDefault();
-    this.props.getSelectedData(id);
+    this.props.loadSelectedFilm(id);
   };
 
   render() {
@@ -64,5 +66,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getDiscoverData, getSelectedData },
+  { loadDiscoverFilms, loadSelectedFilm },
 )(App);

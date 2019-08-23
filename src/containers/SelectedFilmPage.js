@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSelectedData } from '../actions';
+import { loadSelectedFilm } from '../actions';
 import Header from '../components/Header';
 import FilmDetails from '../components/FilmDetails';
 import FilmList from '../components/FilmList';
@@ -28,8 +28,8 @@ class SelectedFilmPage extends Component {
 
     const { findFilmById } = this;
     const { id } = this.props.match.params;
-    const film = findFilmById(id)
-   
+    const film = findFilmById(id);
+
     return (
       <>
         <Header />
@@ -51,5 +51,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSelectedData },
+  { loadSelectedFilm },
 )(SelectedFilmPage);

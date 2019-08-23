@@ -1,18 +1,11 @@
-import { GET_DISCOVER_GENRES } from '../actions/actionTypes';
+import { GENRES_SUCCESS } from '../actions/actionTypes';
 
 const INITIAL_STATE = {};
 
-const arrayToObject = genres => {
-  return genres.reduce(
-    (obj, item) => ({ ...obj, [item.id]: item.name }),
-    {},
-  );
-};
-
 function genreReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case GET_DISCOVER_GENRES:
-      return arrayToObject(action.genres);
+    case GENRES_SUCCESS:
+      return action.genres;
     default:
       return state;
   }
