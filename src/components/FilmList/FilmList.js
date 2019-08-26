@@ -6,7 +6,7 @@ const FilmList = ({ films, findGenre, clickFilm }) => {
   
   return (
     <div className="list">
-      {films.length &&
+      {films &&
         films.map(film => {
           return (
             <Film

@@ -4,6 +4,10 @@
     flex-direction: row;
     color: #fff;
 }
+.header a {
+  color: #fff;
+  text-decoration: none;
+}
 .header-title {
   width: 15%;
 }

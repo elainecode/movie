@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import {
   loadGenres,
   loadDiscoverFilms,
   loadSelectedFilm,
-  updateForm,
-  loadSearchFilms,
 } from '../actions';
 import { config } from '../middleware/config';
 import Footer from '../components/Footer';
@@ -28,19 +26,6 @@ class App extends Component {
 
   findGenre = array => array.map(id => this.props.genres[id]);
 
-  searchFilms = e => {
-    e.preventDefault();
-    const { loadSearchFilms, form } = this.props;
-    loadSearchFilms(form);
-    this.props.history.push('/');
-  };
-
-  updateSearchQuery = e => {
-    e.preventDefault();
-    const { updateForm } = this.props;
-    updateForm(e.target.value);
-  };
-
   clickFilm = id => e => {
     e.preventDefault();
     this.props.loadSelectedFilm(id);
@@ -56,9 +41,8 @@ class App extends Component {
     } = this;
     return (
       <>
-        <Header
-          updateSearchQuery={updateSearchQuery}
-          searchFilms={searchFilms}
+        <Route
+          component={routerProps => <Header {...routerProps} />}
         />
         <div className="content">
           <Route
@@ -96,7 +80,6 @@ const mapStateToProps = state => {
   return {
     films: state.films,
     genres: state.genres,
-    form: state.form,
   };
 };
 
@@ -106,7 +89,5 @@ export default connect(
     loadGenres,
     loadDiscoverFilms,
     loadSelectedFilm,
-    updateForm,
-    loadSearchFilms,
   },
 )(App);

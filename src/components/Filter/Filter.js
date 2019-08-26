@@ -4,7 +4,7 @@ import './Filter.css';
 const Filter = ({ count }) => {
   return (
     <div className="filter-background">
-      {count && <p>{count} movies found</p>}
+      {count > 0 && <p>{count} movies found</p>}
     </div>
   );
 };
