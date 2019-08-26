@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import {
   FormControl,
   InputLabel,
@@ -31,4 +32,4 @@ const Form = ({ updateSearchQuery, searchFilms }) => {
   );
 };
 
-export default Form;
+export default withRouter(Form);

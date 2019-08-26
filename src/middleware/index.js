@@ -29,22 +29,22 @@ import { config } from './config';
 const apiMiddleware = store => next => async action => {
   if (action.type === LOAD_GENRES) {
     try {
-      const genres = await (await fetch(config.genreUrl)).json();
-      return next(genresSuccess(config.arrayToObject(genres)));
+      let { genres } = await (await fetch(config.genreUrl)).json();
+      genres = config.arrayToObject(genres);
+      return next(genresSuccess(genres));
     } catch (e) {
       return next(genresError(e.message));
     }
-    
   }
   if (action.type === LOAD_DISCOVER_FILMS) {
     try {
-      console.log(config.discoverUrl)
-      const { results: films } = await (await fetch(config.discoverUrl)).json();
-      return next(discoverFilmsSuccess(films))
+      const { results: films } = await (await fetch(
+        config.discoverUrl,
+      )).json();
+      return next(discoverFilmsSuccess(films));
     } catch (e) {
       return next(discoverFilmsError(e.message));
     }
-    
   }
 
   if (action.type === LOAD_SEARCH_FILMS) {
@@ -52,13 +52,17 @@ const apiMiddleware = store => next => async action => {
       const { results: films } = await (await fetch(
         config.searchUrl(action.query),
       )).json();
+      return next(searchFilmsSuccess(films));
     } catch (e) {
       return next(searchFilmsError(e.message));
     }
-    return next(searchFilmsSuccess({ films }));
   }
 
   if (action.type === LOAD_SELECTED_FILM) {
+    if (config.visitedFilms.hasOwnProperty(action.id)) {
+      let selectedFilm = config.visitedFilms[action.id];
+      return next(selectedFilmSuccess(selectedFilm));
+    }
     try {
       const film = await (await fetch(
         config.movieIdUrl(action.id),
@@ -67,6 +71,13 @@ const apiMiddleware = store => next => async action => {
         config.movieCreditsUrl(action.id),
       )).json();
       const selectedFilm = config.combineFilmCredits(film, credits);
+      config.visitedFilms[selectedFilm.id] = { ...selectedFilm };
+      localStorage.setItem(
+        'visitedFilms',
+        JSON.stringify({
+          ...config.visitedFilms,
+        }),
+      );
       return next(selectedFilmSuccess(selectedFilm));
     } catch (e) {
       return next(selectedFilmError(e.message));

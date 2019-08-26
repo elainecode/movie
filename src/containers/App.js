@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { loadDiscoverFilms, loadSelectedFilm } from '../actions';
+import {
+  loadGenres,
+  loadDiscoverFilms,
+  loadSelectedFilm,
+  updateForm,
+  loadSearchFilms,
+} from '../actions';
 import { config } from '../middleware/config';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import HomePage from './HomePage';
 import SelectedFilmPage from './SelectedFilmPage';
 
 class App extends Component {
-  componentDidMount() {
-    config.setApiKey()
+  async componentDidMount() {
+    await config.setApiKey();
+    config.setVisitedFilms();
+    this.props.loadGenres();
     this.props.loadDiscoverFilms();
   }
 
+  // componentDidUpdate() {
+  //   this.props.loadDiscoverFilms();
+  // }
+
   findGenre = array => array.map(id => this.props.genres[id]);
+
+  searchFilms = e => {
+    e.preventDefault();
+    const { loadSearchFilms, form } = this.props;
+    loadSearchFilms(form);
+    this.props.history.push('/');
+  };
+
+  updateSearchQuery = e => {
+    e.preventDefault();
+    const { updateForm } = this.props;
+    updateForm(e.target.value);
+  };
 
   clickFilm = id => e => {
     e.preventDefault();
@@ -22,9 +48,18 @@ class App extends Component {
 
   render() {
     const { films } = this.props;
-    const { findGenre, clickFilm } = this;
+    const {
+      findGenre,
+      clickFilm,
+      searchFilms,
+      updateSearchQuery,
+    } = this;
     return (
       <>
+        <Header
+          updateSearchQuery={updateSearchQuery}
+          searchFilms={searchFilms}
+        />
         <div className="content">
           <Route
             exact
@@ -61,10 +96,17 @@ const mapStateToProps = state => {
   return {
     films: state.films,
     genres: state.genres,
+    form: state.form,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { loadDiscoverFilms, loadSelectedFilm },
+  {
+    loadGenres,
+    loadDiscoverFilms,
+    loadSelectedFilm,
+    updateForm,
+    loadSearchFilms,
+  },
 )(App);

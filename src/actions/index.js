@@ -62,9 +62,9 @@ export const loadSelectedFilm = id => ({
   id,
 });
 
-export const selectedFilmSuccess = query => ({
+export const selectedFilmSuccess = film => ({
   type: SELECTED_FILM_SUCCESS,
-  query,
+  film,
 });
 
 export const selectedFilmError = query => ({
