@@ -9,8 +9,10 @@ import {
 import { config } from '../middleware/config';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import HomePage from './HomePage';
+import withInfiniteScroll from './withInfiniteScroll';
 import SelectedFilmPage from './SelectedFilmPage';
+import FilmList from '../components/FilmList';
+import Filter from '../components/Filter';
 
 class App extends Component {
   async componentDidMount() {
@@ -33,12 +35,7 @@ class App extends Component {
 
   render() {
     const { films } = this.props;
-    const {
-      findGenre,
-      clickFilm,
-      searchFilms,
-      updateSearchQuery,
-    } = this;
+    const { findGenre, clickFilm } = this;
     return (
       <>
         <Route
@@ -47,26 +44,26 @@ class App extends Component {
         <div className="content">
           <Route
             exact
-            path="/"
+            path="/films/:id"
             component={routerProps => (
-              <HomePage
-                films={films}
+              <SelectedFilmPage
                 findGenre={findGenre}
-                clickFilm={clickFilm}
                 {...routerProps}
               />
             )}
           />
+
           <Route
-            exact
-            path="/films/:id"
-            component={routerProps => (
-              <SelectedFilmPage
-                films={films}
-                findGenre={findGenre}
-                clickFilm={clickFilm}
-                {...routerProps}
-              />
+            render={routerProps => (
+              <>
+                <Filter count={films && films.length} />
+                <FilmListWithInfiniteScroll
+                  films={films}
+                  findGenre={findGenre}
+                  clickFilm={clickFilm}
+                  {...routerProps}
+                />
+              </>
             )}
           />
         </div>
@@ -75,6 +72,8 @@ class App extends Component {
     );
   }
 }
+
+const FilmListWithInfiniteScroll = withInfiniteScroll(FilmList);
 
 const mapStateToProps = state => {
   return {

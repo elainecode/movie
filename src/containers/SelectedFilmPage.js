@@ -21,12 +21,6 @@ class SelectedFilmPage extends Component {
         {Object.keys(selectedFilm) && (
           <FilmDetails film={selectedFilm} findGenre={findGenre} />
         )}
-        <Filter />
-        <FilmList
-          films={films}
-          findGenre={findGenre}
-          clickFilm={clickFilm}
-        />
       </>
     );
   }
