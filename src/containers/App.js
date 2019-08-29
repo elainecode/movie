@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import {
   loadGenres,
-  loadDiscoverFilms,
+  changeSearchStrategy,
   loadSelectedFilm,
+  
 } from '../actions';
 import { config } from '../middleware/config';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import withInfiniteScroll from './withInfiniteScroll';
+import DiscoverFilmsHoc from '../hoc/DiscoverFilmsHoc';
 import SelectedFilmPage from './SelectedFilmPage';
 import FilmList from '../components/FilmList';
 import Filter from '../components/Filter';
@@ -19,7 +20,7 @@ class App extends Component {
     await config.setApiKey();
     config.setVisitedFilms();
     this.props.loadGenres();
-    this.props.loadDiscoverFilms();
+    this.props.changeSearchStrategy();
   }
 
   // componentDidUpdate() {
@@ -57,7 +58,7 @@ class App extends Component {
             render={routerProps => (
               <>
                 <Filter count={films && films.length} />
-                <FilmListWithInfiniteScroll
+                <DiscoverFilms
                   films={films}
                   findGenre={findGenre}
                   clickFilm={clickFilm}
@@ -73,7 +74,7 @@ class App extends Component {
   }
 }
 
-const FilmListWithInfiniteScroll = withInfiniteScroll(FilmList);
+const DiscoverFilms = DiscoverFilmsHoc(FilmList);
 
 const mapStateToProps = state => {
   return {
@@ -86,7 +87,7 @@ export default connect(
   mapStateToProps,
   {
     loadGenres,
-    loadDiscoverFilms,
+    changeSearchStrategy,
     loadSelectedFilm,
   },
 )(App);

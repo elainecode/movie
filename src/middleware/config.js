@@ -15,16 +15,14 @@ config.visitedFilms = JSON.parse(
   localStorage.getItem('visitedFilms') || '{}',
 );
 
-config.discoverPageNumber = 0;
-
-config.searchPageNumber = 0;
-
 config.genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${config.API_KEY}&language=en-US`;
 
-config.discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&sort_by=popularity.desc&page=${++config.discoverPageNumber}`;
+config.discoverUrl = pageNumber => {
+  return `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&sort_by=popularity.desc&page=${pageNumber}`;
+};
 
-config.searchUrl = query => {
-  return `https://api.themoviedb.org/3/search/movie?api_key=${config.API_KEY}&language=en-US&query=${query}&page=${++config.searchPageNumber}`;
+config.searchUrl = (query, pageNumber) => {
+  return `https://api.themoviedb.org/3/search/movie?api_key=${config.API_KEY}&language=en-US&query=${query}&page=${pageNumber}`;
 };
 
 config.movieIdUrl = id => {

@@ -20,8 +20,6 @@ class Header extends Component {
     e.preventDefault();
     const { loadSearchFilms, form } = this.props;
     loadSearchFilms(form);
-    console.log('location state:', location.state);
-    this.props.history.push('/');
   };
 
   updateSearchQuery = e => {

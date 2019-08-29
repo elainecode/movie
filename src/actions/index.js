@@ -12,6 +12,7 @@ import {
   DISCOVER_FILMS_ERROR,
   GENRES_ERROR,
   UPDATE_FORM,
+  CHANGE_SEARCH_STRATEGY,
 } from './actionTypes';
 
 export const loadDiscoverFilms = () => ({
@@ -76,6 +77,11 @@ export const updateForm = form => ({
   type: UPDATE_FORM,
   form,
 });
+
+export const changeSearchStrategy = () => ({
+  type: CHANGE_SEARCH_STRATEGY,
+});
+
 
 // export const getDiscoverData = () => async dispatch => {
 //   const API_KEY = await config.setApiKey();

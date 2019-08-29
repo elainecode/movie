@@ -39,7 +39,7 @@ const apiMiddleware = store => next => async action => {
   if (action.type === LOAD_DISCOVER_FILMS) {
     try {
       const { results: films } = await (await fetch(
-        config.discoverUrl,
+        config.discoverUrl(action.pageNumber),
       )).json();
       return next(discoverFilmsSuccess(films));
     } catch (e) {
@@ -50,7 +50,7 @@ const apiMiddleware = store => next => async action => {
   if (action.type === LOAD_SEARCH_FILMS) {
     try {
       const { results: films } = await (await fetch(
-        config.searchUrl(action.query),
+        config.searchUrl(action.query,action.pageNumber),
       )).json();
       return next(searchFilmsSuccess(films));
     } catch (e) {
