@@ -27,6 +27,7 @@ import {
 import { config } from './config';
 
 const apiMiddleware = store => next => async action => {
+  console.log('action', action)
   if (action.type === LOAD_GENRES) {
     try {
       let { genres } = await (await fetch(config.genreUrl)).json();
@@ -39,7 +40,7 @@ const apiMiddleware = store => next => async action => {
   if (action.type === LOAD_DISCOVER_FILMS) {
     try {
       const { results: films } = await (await fetch(
-        config.discoverUrl(action.pageNumber),
+        config.discoverUrl(action.page),
       )).json();
       return next(discoverFilmsSuccess(films));
     } catch (e) {
@@ -50,7 +51,7 @@ const apiMiddleware = store => next => async action => {
   if (action.type === LOAD_SEARCH_FILMS) {
     try {
       const { results: films } = await (await fetch(
-        config.searchUrl(action.query,action.pageNumber),
+        config.searchUrl(action.query, action.page),
       )).json();
       return next(searchFilmsSuccess(films));
     } catch (e) {

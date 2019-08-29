@@ -15,8 +15,9 @@ import {
   CHANGE_SEARCH_STRATEGY,
 } from './actionTypes';
 
-export const loadDiscoverFilms = () => ({
+export const loadDiscoverFilms = page => ({
   type: LOAD_DISCOVER_FILMS,
+  page,
 });
 
 export const loadGenres = () => ({
@@ -43,9 +44,10 @@ export const genresError = error => ({
   error,
 });
 
-export const loadSearchFilms = query => ({
+export const loadSearchFilms = (query, page) => ({
   type: LOAD_SEARCH_FILMS,
   query,
+  page,
 });
 
 export const searchFilmsSuccess = films => ({

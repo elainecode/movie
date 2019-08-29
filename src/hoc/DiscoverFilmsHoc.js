@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { loadDiscoverFilms } from '../actions';
+import { loadDiscoverFilms, changeSearchStrategy } from '../actions';
 
 const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
+  
+    componentDidMount(){
+      this.props.changeSearchStrategy();
+    }
+
     loadMore = () => {
       const pageNumber = this.props.discoverPageNumber + 1 || 1;
       this.props.loadDiscoverFilms(pageNumber);
@@ -22,7 +27,7 @@ const Hoc = ListComponent => {
   return DiscoverFilmsHoc;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     discoverPageNumber: 1,
   };
@@ -33,6 +38,7 @@ const DiscoverFilmsHoc = compose(
     mapStateToProps,
     {
       loadDiscoverFilms,
+      changeSearchStrategy
     },
   ),
   Hoc,

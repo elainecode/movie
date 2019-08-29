@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import {
   FormControl,
   InputLabel,
@@ -13,10 +14,11 @@ import {
 } from '@material-ui/core';
 import './Form.css';
 
-const Form = ({ updateSearchQuery, searchFilms }) => {
+const Form = ({ updateSearchQuery, searchFilms, history }) => {
+  //const { history } = this.props;
   return (
     <>
-      <form onSubmit={searchFilms} className="form-style">
+      <form onSubmit={searchFilms(history)} className="form-style">
         <InputBase
           fullWidth
           placeholder="Search for a movie"
@@ -31,4 +33,4 @@ const Form = ({ updateSearchQuery, searchFilms }) => {
   );
 };
 
-export default Form;
+export default withRouter(Form);
