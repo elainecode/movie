@@ -33,7 +33,7 @@ const FilmList = ({
     <InfiniteScroll
       pageStart={1}
       loadMore={loadMore}
-      hasMore={() => (true)}
+      hasMore
       loader={
                 <div className="loader" key={0}>
           Loading ...

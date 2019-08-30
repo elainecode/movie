@@ -22,7 +22,6 @@ class App extends Component {
     await config.setApiKey();
     config.setVisitedFilms();
     this.props.loadGenres();
-    this.props.changeSearchStrategy();
   }
 
   findGenre = array => array.map(id => this.props.genres[id]);
