@@ -7,16 +7,15 @@ const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
     componentDidMount() {
       this.props.changeSearchStrategy();
-      console.log('why are you here?')
-      }
-    
-      componentWillUnmount() {
-        this.props.changeSearchStrategy();
-      }
-    loadMore = (page) => {
-      const pageNumber = this.props.discoverPageNumber + 1 || 1;
+      console.log('why are you here?');
+    }
+
+    componentWillUnmount() {
+      this.props.changeSearchStrategy();
+    }
+
+    loadMore = page => {
       if (!this.props.match.query) {
-        console.log('why are you here?')
         this.props.loadDiscoverFilms(page);
       }
     };
@@ -33,15 +32,9 @@ const Hoc = ListComponent => {
   return DiscoverFilmsHoc;
 };
 
-const mapStateToProps = state => {
-  return {
-    discoverPageNumber: 1,
-  };
-};
-
 const DiscoverFilmsHoc = compose(
   connect(
-    mapStateToProps,
+    null,
     {
       loadDiscoverFilms,
       changeSearchStrategy,

@@ -6,16 +6,15 @@ import { loadSearchFilms, changeSearchStrategy } from '../actions';
 const Hoc = ListComponent => {
   class SearchFilmsHoc extends Component {
     componentDidMount() {
-      this.props.changeSearchStrategy();  
+      this.props.changeSearchStrategy();
     }
 
     componentWillUnmount() {
       this.props.changeSearchStrategy();
     }
 
-    loadMore = (page) => {
+    loadMore = page => {
       console.log(page);
-      const pageNumber = this.props.searchPageNumber + 1 || 1;
       if (this.props.match.params.query) {
         this.props.loadSearchFilms(
           this.props.match.params.query,
@@ -38,7 +37,6 @@ const Hoc = ListComponent => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    searchPageNumber: 1,
     query: ownProps.match.params.query,
   };
 };
