@@ -8,4 +8,5 @@ export const scrollToContentDivTop = () => {
   }
 };
 
-export const findGenre = (array, genres) => array.map(id => genres[id]);
+export const findGenre = (array, genres) =>
+  array.map(id => genres[id]);

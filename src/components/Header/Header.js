@@ -14,7 +14,7 @@ import {
 import Search from '../Search';
 import './Header.css';
 
-const Header = ({ searchFilms, updateSearchQuery, match }) => {
+const Header = ({ searchFilms, match }) => {
   return (
     <>
       <AppBar className="header" position="sticky">
@@ -22,20 +22,11 @@ const Header = ({ searchFilms, updateSearchQuery, match }) => {
           <Typography variant="h6" className="header-title">
             <Link to={`${match.url}`}>MovieDB</Link>
           </Typography>
-          <Search
-            updateSearchQuery={updateSearchQuery}
-            searchFilms={searchFilms}
-          />
+          <Search searchFilms={searchFilms} />
         </Toolbar>
       </AppBar>
     </>
   );
 };
-
-// const mapStateToProps = state => {
-//   return {
-//     form: state.form,
-//   };
-// };
 
 export default Header;

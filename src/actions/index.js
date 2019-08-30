@@ -83,24 +83,3 @@ export const updateForm = form => ({
 export const changeSearchStrategy = () => ({
   type: CHANGE_SEARCH_STRATEGY,
 });
-
-
-// export const getDiscoverData = () => async dispatch => {
-//   const API_KEY = await config.setApiKey();
-//   const { genres, films } = await config.getDiscoverData(API_KEY);
-//   dispatch(config.getApiKey(API_KEY));
-//   dispatch(getDiscoverFilms(films));
-//   dispatch(getDiscoverGenres(genres));
-// };
-
-// export const getSeachData = query => async dispatch => {
-//   const API_KEY = await config.setApiKey();
-//   const { films } = await config.getSearchData(API_KEY, query);
-//   dispatch(getSearchFilms(films));
-// };
-
-// export const getSelectedData = id => async dispatch => {
-//   const API_KEY = await config.setApiKey();
-//   const film  = await config.getCreditsData(API_KEY, id);
-//   dispatch(selectFilm(film));
-// };

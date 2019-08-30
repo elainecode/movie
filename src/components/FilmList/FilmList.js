@@ -29,11 +29,11 @@ const FilmList = ({ films, clickFilm, loadMore, genres, match }) => {
       pageStart={1}
       loadMore={loadMore}
       hasMore
-      loader={(
-<div className="loader" key={0}>
+      loader={
+                <div className="loader" key={0}>
           Loading ...
         </div>
-)}
+      }
     >
       <div className="list">{movies}</div>
     </InfiniteScroll>

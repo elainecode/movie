@@ -26,16 +26,9 @@ class App extends Component {
 
   searchFilms = history => e => {
     e.preventDefault();
-    // const { loadSearchFilms } = this.props;
     this.props.changeSearchStrategy();
     const query = e.currentTarget.elements[0].value;
     history.push(`/search/${query}`);
-  };
-
-  updateSearchQuery = e => {
-    e.preventDefault();
-    // const { updateForm } = this.props;
-    // updateForm(e.target.value);
   };
 
   clickFilm = id => e => {
@@ -45,16 +38,12 @@ class App extends Component {
 
   render() {
     const { films, genres } = this.props;
-    const { clickFilm, updateSearchQuery, searchFilms } = this;
+    const { clickFilm, searchFilms } = this;
     return (
       <>
         <Route
           component={routerProps => (
-            <Header
-              updateSearchQuery={updateSearchQuery}
-              searchFilms={searchFilms}
-              {...routerProps}
-            />
+            <Header searchFilms={searchFilms} {...routerProps} />
           )}
         />
         <div className="content">
