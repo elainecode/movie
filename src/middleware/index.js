@@ -27,7 +27,6 @@ import {
 import { config } from './config';
 
 const apiMiddleware = store => next => async action => {
-  console.log('action', action)
   if (action.type === LOAD_GENRES) {
     try {
       let { genres } = await (await fetch(config.genreUrl)).json();

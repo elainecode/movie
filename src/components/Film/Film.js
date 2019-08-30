@@ -17,12 +17,19 @@ const Film = ({
   image_id,
   genres,
   clickFilm,
+  match,
 }) => {
   return (
     <>
       <Card>
         <CardActionArea onClick={clickFilm(id)}>
-          <Link to={`/films/${id}`}>
+          <Link
+            to={
+              match.url === '/'
+                ? `${match.url}films/${id}`
+                : `${match.url}/films/${id}`
+            }
+          >
             <CardMedia
               id="list-item-image"
               image={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image_id}`}

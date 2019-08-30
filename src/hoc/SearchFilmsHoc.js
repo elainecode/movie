@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { loadSearchFilms } from '../actions';
+import { loadSearchFilms, changeSearchStrategy } from '../actions';
 
 const Hoc = ListComponent => {
   class SearchFilmsHoc extends Component {
-      loadMore = () => {
-      console.log(this.props)
+    componentDidMount() {
+      this.props.changeSearchStrategy();  
+    }
+
+    componentWillUnmount() {
+      this.props.changeSearchStrategy();
+    }
+
+    loadMore = () => {
+      console.log(this.props);
       const pageNumber = this.props.searchPageNumber + 1 || 1;
-      this.props.loadSearchFilms(this.props.match.params.query, pageNumber);
+      if (this.props.match.params.query) {
+        this.props.loadSearchFilms(
+          this.props.match.params.query,
+          pageNumber,
+        );
+      }
     };
 
     render() {
@@ -35,6 +48,7 @@ const SearchFilmsHoc = compose(
     mapStateToProps,
     {
       loadSearchFilms,
+      changeSearchStrategy,
     },
   ),
   Hoc,

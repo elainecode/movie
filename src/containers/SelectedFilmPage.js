@@ -1,30 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { loadSelectedFilm } from '../actions';
+
 import FilmDetails from '../components/FilmDetails';
-import FilmList from '../components/FilmList';
-import Filter from '../components/Filter';
+
 
 class SelectedFilmPage extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    // this.props.history.push(`${match.params}/`);
+  }
 
   render() {
+    console.log(this.props.match.url, this.props.match.path);
     const {
       films,
       genres,
       selectedFilm,
       findGenre,
       clickFilm,
+      match,
     } = this.props;
     return (
       <>
-        {Object.keys(selectedFilm) && (
-          <FilmDetails film={selectedFilm} findGenre={findGenre} />
-        )}
+        <Route
+          render={routerProps => (
+            <>
+              {Object.keys(selectedFilm) && (
+                <FilmDetails
+                  film={selectedFilm}
+                  findGenre={findGenre}
+                  {...routerProps}
+                />
+              )}
+            </>
+          )}
+        />
       </>
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   selectedFilm: state.selectedFilm,

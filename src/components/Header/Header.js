@@ -14,13 +14,13 @@ import {
 import Search from '../Search';
 import './Header.css';
 
-const Header = ({ searchFilms, updateSearchQuery }) => {
+const Header = ({ searchFilms, updateSearchQuery, match }) => {
   return (
     <>
       <AppBar className="header" position="sticky">
         <Toolbar>
           <Typography variant="h6" className="header-title">
-            <Link to="/">MovieDB</Link>
+            <Link to={`${match.url}`}>MovieDB</Link>
           </Typography>
           <Search
             updateSearchQuery={updateSearchQuery}

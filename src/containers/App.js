@@ -67,18 +67,18 @@ class App extends Component {
         />
         <div className="content">
           <Route
-            exact
-            path="/films/:id"
-            component={routerProps => (
+            path={['/search/:query/films/:id', '/films/:id']}
+            render={routerProps => (
               <SelectedFilmPage
+                films={films}
                 findGenre={findGenre}
+                clickFilm={clickFilm}
                 {...routerProps}
               />
             )}
           />
           <Switch>
             <Route
-              exact
               path="/search/:query"
               render={routerProps => (
                 <>
@@ -93,6 +93,7 @@ class App extends Component {
               )}
             />
             <Route
+               path="/"
               render={routerProps => (
                 <>
                   <Filter count={films && films.length} />

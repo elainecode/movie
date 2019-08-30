@@ -5,14 +5,20 @@ import { loadDiscoverFilms, changeSearchStrategy } from '../actions';
 
 const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
-  
-    componentDidMount(){
+    componentDidMount() {
       this.props.changeSearchStrategy();
-    }
-
+      console.log('why are you here?')
+      }
+    
+      componentWillUnmount() {
+        this.props.changeSearchStrategy();
+      }
     loadMore = () => {
       const pageNumber = this.props.discoverPageNumber + 1 || 1;
-      this.props.loadDiscoverFilms(pageNumber);
+      if (!this.props.match.query) {
+        console.log('why are you here?')
+        this.props.loadDiscoverFilms(pageNumber);
+      }
     };
 
     render() {
@@ -27,7 +33,7 @@ const Hoc = ListComponent => {
   return DiscoverFilmsHoc;
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     discoverPageNumber: 1,
   };
@@ -38,7 +44,7 @@ const DiscoverFilmsHoc = compose(
     mapStateToProps,
     {
       loadDiscoverFilms,
-      changeSearchStrategy
+      changeSearchStrategy,
     },
   ),
   Hoc,
