@@ -13,11 +13,11 @@ const Hoc = ListComponent => {
       componentWillUnmount() {
         this.props.changeSearchStrategy();
       }
-    loadMore = () => {
+    loadMore = (page) => {
       const pageNumber = this.props.discoverPageNumber + 1 || 1;
       if (!this.props.match.query) {
         console.log('why are you here?')
-        this.props.loadDiscoverFilms(pageNumber);
+        this.props.loadDiscoverFilms(page);
       }
     };
 

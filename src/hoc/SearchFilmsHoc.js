@@ -13,13 +13,13 @@ const Hoc = ListComponent => {
       this.props.changeSearchStrategy();
     }
 
-    loadMore = () => {
-      console.log(this.props);
+    loadMore = (page) => {
+      console.log(page);
       const pageNumber = this.props.searchPageNumber + 1 || 1;
       if (this.props.match.params.query) {
         this.props.loadSearchFilms(
           this.props.match.params.query,
-          pageNumber,
+          page,
         );
       }
     };
