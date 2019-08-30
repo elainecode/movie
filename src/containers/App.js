@@ -24,8 +24,6 @@ class App extends Component {
     this.props.loadGenres();
   }
 
-  findGenre = array => array.map(id => this.props.genres[id]);
-
   searchFilms = history => e => {
     e.preventDefault();
     // const { loadSearchFilms } = this.props;
@@ -46,13 +44,8 @@ class App extends Component {
   };
 
   render() {
-    const { films } = this.props;
-    const {
-      findGenre,
-      clickFilm,
-      updateSearchQuery,
-      searchFilms,
-    } = this;
+    const { films, genres } = this.props;
+    const { clickFilm, updateSearchQuery, searchFilms } = this;
     return (
       <>
         <Route
@@ -70,7 +63,7 @@ class App extends Component {
             render={routerProps => (
               <SelectedFilmPage
                 films={films}
-                findGenre={findGenre}
+                genres={genres}
                 clickFilm={clickFilm}
                 {...routerProps}
               />
@@ -84,7 +77,7 @@ class App extends Component {
                   <Filter count={films && films.length} />
                   <SearchFilms
                     films={films}
-                    findGenre={findGenre}
+                    genres={genres}
                     clickFilm={clickFilm}
                     {...routerProps}
                   />
@@ -92,13 +85,13 @@ class App extends Component {
               )}
             />
             <Route
-               path="/"
+              path="/"
               render={routerProps => (
                 <>
                   <Filter count={films && films.length} />
                   <DiscoverFilms
                     films={films}
-                    findGenre={findGenre}
+                    genres={genres}
                     clickFilm={clickFilm}
                     {...routerProps}
                   />

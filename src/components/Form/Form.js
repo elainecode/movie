@@ -15,7 +15,6 @@ import {
 import './Form.css';
 
 const Form = ({ updateSearchQuery, searchFilms, history }) => {
-  //const { history } = this.props;
   return (
     <>
       <form onSubmit={searchFilms(history)} className="form-style">

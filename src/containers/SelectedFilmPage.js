@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { loadSelectedFilm } from '../actions';
+import {scrollToContentDivTop } from '../helpers';
 
 import FilmDetails from '../components/FilmDetails';
 
-
 class SelectedFilmPage extends Component {
   componentDidMount() {
-    // this.props.history.push(`${match.params}/`);
+    scrollToContentDivTop()
+  }
+
+  componentDidUpdate() {
+    scrollToContentDivTop()
   }
 
   render() {
-    console.log(this.props.match.url, this.props.match.path);
     const {
       films,
       genres,
       selectedFilm,
-      findGenre,
       clickFilm,
       match,
     } = this.props;
@@ -29,7 +31,7 @@ class SelectedFilmPage extends Component {
               {Object.keys(selectedFilm) && (
                 <FilmDetails
                   film={selectedFilm}
-                  findGenre={findGenre}
+                  genres={genres}
                   {...routerProps}
                 />
               )}
@@ -40,7 +42,6 @@ class SelectedFilmPage extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   selectedFilm: state.selectedFilm,

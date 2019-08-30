@@ -1,7 +1,8 @@
 import React from 'react';
+import { findGenre } from '../../helpers';
 import './FilmDetails.css';
 
-const FilmDetails = ({ film, findGenre }) => {
+const FilmDetails = ({ film, genres }) => {
   return (
     <div className="film-details-container">
       <div className="film-poster">
@@ -17,7 +18,7 @@ const FilmDetails = ({ film, findGenre }) => {
         <h2>{film.title}</h2>
         <h5>
           {film.genres &&
-            findGenre(film.genres.map(item => item.id)).join(' ')}
+            findGenre(film.genres.map(item => item.id), genres).join(' ')}
         </h5>
         <p>
           {film.release_date && film.release_date.slice(0, 4)}

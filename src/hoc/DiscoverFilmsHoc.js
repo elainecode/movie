@@ -7,7 +7,6 @@ const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
     componentDidMount() {
       this.props.changeSearchStrategy();
-      console.log('why are you here?');
     }
 
     componentWillUnmount() {

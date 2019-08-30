@@ -1,15 +1,10 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
+import { findGenre } from '../../helpers';
 import Film from '../Film';
 import './FilmList.css';
 
-const FilmList = ({
-  films,
-  findGenre,
-  clickFilm,
-  loadMore,
-  match,
-}) => {
+const FilmList = ({ films, clickFilm, loadMore, genres, match }) => {
   const movies = [];
 
   films.map(film => {
@@ -21,7 +16,7 @@ const FilmList = ({
           year={film.release_date.slice(0, 4)}
           id={film.id}
           image_id={film.poster_path}
-          genres={findGenre(film.genre_ids)}
+          genres={findGenre(film.genre_ids, genres)}
           clickFilm={clickFilm}
           match={match}
         />
@@ -34,11 +29,11 @@ const FilmList = ({
       pageStart={1}
       loadMore={loadMore}
       hasMore
-      loader={
-                <div className="loader" key={0}>
+      loader={(
+<div className="loader" key={0}>
           Loading ...
-</div>
-      }
+        </div>
+)}
     >
       <div className="list">{movies}</div>
     </InfiniteScroll>
