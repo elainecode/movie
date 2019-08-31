@@ -1,10 +1,10 @@
 import React from 'react';
 import './Filter.css';
 
-const Filter = () => {
+const Filter = ({ count }) => {
   return (
     <div className="filter-background">
-      <p>This is the grey Filter bar under the search:</p>
+      {count > 0 && <p>{count} movies found</p>}
     </div>
   );
 };

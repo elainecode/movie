@@ -1,28 +1,53 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
+import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { loadSelectedFilm } from '../actions';
+import {scrollToContentDivTop } from '../helpers';
+
 import FilmDetails from '../components/FilmDetails';
-import FilmList from '../components/FilmList';
-import Filter from '../components/Filter';
 
 class SelectedFilmPage extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  componentDidMount() {
+    scrollToContentDivTop()
+  }
+
+  componentDidUpdate() {
+    scrollToContentDivTop()
   }
 
   render() {
-    const { films, genres, findGenre } = this.props;
+    const {
+      films,
+      genres,
+      selectedFilm,
+      clickFilm,
+      match,
+    } = this.props;
     return (
       <>
-        <div className="content-background">
-          <Header />
-          <FilmDetails id={this.props.match.params.id} />
-        </div>
-        <Filter />
-        <FilmList films={films} findGenre={findGenre} />
+        <Route
+          render={routerProps => (
+            <>
+              {Object.keys(selectedFilm) && (
+                <FilmDetails
+                  film={selectedFilm}
+                  genres={genres}
+                  {...routerProps}
+                />
+              )}
+            </>
+          )}
+        />
       </>
     );
   }
 }
 
-export default SelectedFilmPage;
+const mapStateToProps = state => ({
+  selectedFilm: state.selectedFilm,
+});
+
+export default connect(
+  mapStateToProps,
+  { loadSelectedFilm },
+)(SelectedFilmPage);

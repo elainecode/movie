@@ -10,14 +10,28 @@ import {
 } from '@material-ui/core';
 import './Film.css';
 
-const Film = ({ title, year, id, image_id, genres }) => {
+const Film = ({
+  title,
+  year,
+  id,
+  image_id,
+  genres,
+  clickFilm,
+  match,
+}) => {
   return (
     <>
       <Card>
-        <CardActionArea>
-          <Link to={`/films/${id}`}>
+        <CardActionArea onClick={clickFilm(id)}>
+          <Link
+            to={
+              match.url === '/'
+                ? `${match.url}films/${id}`
+                : `${match.url}/films/${id}`
+            }
+          >
             <CardMedia
-              className="list-item-image"
+              id="list-item-image"
               image={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image_id}`}
               title={title}
             />

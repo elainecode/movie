@@ -1,6 +1,9 @@
-.list-item-image {
-    height: 300px;
+#list-item-image {
+    height: 400px;
+    background-size: 100% 100%;
+    background-position: unset;
 }
+
 
 .card-content-top {
     display: flex;
