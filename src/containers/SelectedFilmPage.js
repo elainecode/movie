@@ -28,13 +28,11 @@ class SelectedFilmPage extends Component {
         <Route
           render={routerProps => (
             <>
-              (
               <FilmDetails
                 film={selectedFilm}
                 genres={genres}
                 {...routerProps}
               />
-              )
             </>
           )}
         />
