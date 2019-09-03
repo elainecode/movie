@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { loadSelectedFilm } from '../actions';
-import {scrollToContentDivTop } from '../helpers';
+import { scrollToContentDivTop } from '../helpers';
 
 import FilmDetails from '../components/FilmDetails';
 
 class SelectedFilmPage extends Component {
   componentDidMount() {
-    scrollToContentDivTop()
+    window.addEventListener('click', scrollToContentDivTop, false);
   }
 
-  componentDidUpdate() {
-    scrollToContentDivTop()
+  componentWillUnmount() {
+    window.removeEventListener('click', scrollToContentDivTop, false);
   }
 
   render() {
@@ -28,13 +28,13 @@ class SelectedFilmPage extends Component {
         <Route
           render={routerProps => (
             <>
-              {Object.keys(selectedFilm) && (
-                <FilmDetails
-                  film={selectedFilm}
-                  genres={genres}
-                  {...routerProps}
-                />
-              )}
+              (
+              <FilmDetails
+                film={selectedFilm}
+                genres={genres}
+                {...routerProps}
+              />
+              )
             </>
           )}
         />
@@ -43,8 +43,8 @@ class SelectedFilmPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  selectedFilm: state.selectedFilm,
+const mapStateToProps = ({ selectedFilm }) => ({
+  selectedFilm,
 });
 
 export default connect(

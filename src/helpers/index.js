@@ -1,8 +1,8 @@
-export const scrollToContentDivTop = () => {
-  const content = document.querySelector('.content');
-  if (content) {
+export const scrollToContentDivTop = e => {
+  e.preventDefault();
+  if (e.target.className === 'MuiCardMedia-root') {
     window.scrollTo({
-      top: content.offsetTop,
+      top: 0,
       behavior: 'smooth',
     });
   }

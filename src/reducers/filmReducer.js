@@ -1,7 +1,7 @@
 import {
   SEARCH_FILMS_SUCCESS,
   DISCOVER_FILMS_SUCCESS,
-  CHANGE_SEARCH_STRATEGY,
+  RESET_RESULTS_TO_DEFAULT_STATE,
 } from '../actions/actionTypes';
 
 const INITIAL_STATE = [];
@@ -12,7 +12,7 @@ function filmReducer(state = INITIAL_STATE, action) {
       return [...state, ...action.films];
     case SEARCH_FILMS_SUCCESS:
       return [...state, ...action.films];
-    case CHANGE_SEARCH_STRATEGY:
+    case RESET_RESULTS_TO_DEFAULT_STATE:
       return INITIAL_STATE;
     default:
       return state;

@@ -12,7 +12,7 @@ import {
   DISCOVER_FILMS_ERROR,
   GENRES_ERROR,
   UPDATE_FORM,
-  CHANGE_SEARCH_STRATEGY,
+  RESET_RESULTS_TO_DEFAULT_STATE,
 } from './actionTypes';
 
 export const loadDiscoverFilms = page => ({
@@ -80,6 +80,6 @@ export const updateForm = form => ({
   form,
 });
 
-export const changeSearchStrategy = () => ({
-  type: CHANGE_SEARCH_STRATEGY,
+export const resetResultsToDefaultState = () => ({
+  type: RESET_RESULTS_TO_DEFAULT_STATE,
 });

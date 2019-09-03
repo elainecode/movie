@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import {
   loadGenres,
-  changeSearchStrategy,
+  resetResultsToDefaultState,
   loadSelectedFilm,
   updateForm,
   loadSearchFilms,
@@ -26,7 +26,7 @@ class App extends Component {
 
   searchFilms = history => e => {
     e.preventDefault();
-    this.props.changeSearchStrategy();
+    this.props.resetResultsToDefaultState();
     const query = e.currentTarget.elements[0].value;
     history.push(`/search/${query}`);
   };
@@ -41,14 +41,15 @@ class App extends Component {
     const { clickFilm, searchFilms } = this;
     return (
       <>
+        <Redirect exact from="/" to="home" />
         <Route
-          component={routerProps => (
+          render={routerProps => (
             <Header searchFilms={searchFilms} {...routerProps} />
           )}
         />
         <div className="content">
           <Route
-            path={['/search/:query/films/:id', '/films/:id']}
+            path={['/search/:query/films/:id', '/home/films/:id']}
             render={routerProps => (
               <SelectedFilmPage
                 films={films}
@@ -58,36 +59,34 @@ class App extends Component {
               />
             )}
           />
-          <Switch>
-            <Route
-              path="/search/:query"
-              render={routerProps => (
-                <>
-                  <Filter count={films && films.length} />
-                  <SearchFilms
-                    films={films}
-                    genres={genres}
-                    clickFilm={clickFilm}
-                    {...routerProps}
-                  />
-                </>
-              )}
-            />
-            <Route
-              path="/"
-              render={routerProps => (
-                <>
-                  <Filter count={films && films.length} />
-                  <DiscoverFilms
-                    films={films}
-                    genres={genres}
-                    clickFilm={clickFilm}
-                    {...routerProps}
-                  />
-                </>
-              )}
-            />
-          </Switch>
+          <Route
+            path="/search/:query"
+            render={routerProps => (
+              <>
+                <Filter count={films && films.length} />
+                <SearchFilms
+                  films={films}
+                  genres={genres}
+                  clickFilm={clickFilm}
+                  {...routerProps}
+                />
+              </>
+            )}
+          />
+          <Route
+            path="/home"
+            render={routerProps => (
+              <>
+                <Filter count={films && films.length} />
+                <DiscoverFilms
+                  films={films}
+                  genres={genres}
+                  clickFilm={clickFilm}
+                  {...routerProps}
+                />
+              </>
+            )}
+          />
         </div>
         <Footer />
       </>
@@ -98,18 +97,13 @@ class App extends Component {
 const DiscoverFilms = DiscoverFilmsHoc(FilmList);
 const SearchFilms = SearchFilmsHoc(FilmList);
 
-const mapStateToProps = state => {
-  return {
-    films: state.films,
-    genres: state.genres,
-  };
-};
+const mapStateToProps = ({ films, genres }) => ({ films, genres });
 
 export default connect(
   mapStateToProps,
   {
     loadGenres,
-    changeSearchStrategy,
+    resetResultsToDefaultState,
     loadSelectedFilm,
     updateForm,
   },
