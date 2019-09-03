@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { loadSearchFilms, changeSearchStrategy } from '../actions';
+import {
+  loadSearchFilms,
+  resetResultsToDefaultState,
+} from '../actions';
 
 const Hoc = ListComponent => {
   class SearchFilmsHoc extends Component {
     componentDidMount() {
-      this.props.changeSearchStrategy();
+      this.props.resetResultsToDefaultState();
     }
 
     componentWillUnmount() {
-      this.props.changeSearchStrategy();
+      this.props.resetResultsToDefaultState();
     }
 
     loadMore = page => {
-      console.log(page);
       if (this.props.match.params.query) {
         this.props.loadSearchFilms(
           this.props.match.params.query,
@@ -35,18 +37,12 @@ const Hoc = ListComponent => {
   return SearchFilmsHoc;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    query: ownProps.match.params.query,
-  };
-};
-
 const SearchFilmsHoc = compose(
   connect(
-    mapStateToProps,
+    null,
     {
       loadSearchFilms,
-      changeSearchStrategy,
+      resetResultsToDefaultState,
     },
   ),
   Hoc,

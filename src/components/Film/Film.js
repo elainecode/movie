@@ -20,16 +20,10 @@ const Film = ({
   match,
 }) => {
   return (
-    <>
-      <Card>
-        <CardActionArea onClick={clickFilm(id)}>
-          <Link
-            to={
-              match.url === '/'
-                ? `${match.url}films/${id}`
-                : `${match.url}/films/${id}`
-            }
-          >
+    <div className="scroll-click-event">
+      <Card onClick={clickFilm(id)}>
+        <CardActionArea>
+          <Link to={`${match.url}/films/${id}`}>
             <CardMedia
               id="list-item-image"
               image={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image_id}`}
@@ -47,7 +41,7 @@ const Film = ({
           </CardContent>
         </CardActionArea>
       </Card>
-    </>
+    </div>
   );
 };
 

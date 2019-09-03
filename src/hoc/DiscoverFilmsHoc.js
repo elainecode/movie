@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { loadDiscoverFilms, changeSearchStrategy } from '../actions';
+import { loadDiscoverFilms, resetResultsToDefaultState } from '../actions';
 
 const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
     componentDidMount() {
-      this.props.changeSearchStrategy();
+      this.props.resetResultsToDefaultState();
     }
 
     componentWillUnmount() {
-      this.props.changeSearchStrategy();
+      this.props.resetResultsToDefaultState();
     }
 
     loadMore = page => {
@@ -36,7 +36,7 @@ const DiscoverFilmsHoc = compose(
     null,
     {
       loadDiscoverFilms,
-      changeSearchStrategy,
+      resetResultsToDefaultState,
     },
   ),
   Hoc,
