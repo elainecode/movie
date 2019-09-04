@@ -1,7 +1,10 @@
-export const scrollToContentDivTop = e => {
+export const scrollToContentDivTop = (e, contentEl) => {
   e.preventDefault();
-  if (e.target.className === 'MuiCardMedia-root') {
-    window.scrollTo({
+  if (
+    e.target.className === 'MuiCardMedia-root' ||
+    'MuiCardContent-root'
+  ) {
+    contentEl().scrollTo({
       top: 0,
       behavior: 'smooth',
     });

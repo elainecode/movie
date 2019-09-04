@@ -20,7 +20,7 @@ const Film = ({
   match,
 }) => {
   return (
-    <div className="scroll-click-event">
+    <div id={id} className="scroll-click-event">
       <Card onClick={clickFilm(id)}>
         <CardActionArea>
           <Link to={`${match.url}/films/${id}`}>

@@ -13,6 +13,7 @@ import {
   GENRES_ERROR,
   UPDATE_FORM,
   RESET_RESULTS_TO_DEFAULT_STATE,
+  RESET_SELECTED_TO_DEFAULT_STATE,
 } from './actionTypes';
 
 export const loadDiscoverFilms = page => ({
@@ -82,4 +83,8 @@ export const updateForm = form => ({
 
 export const resetResultsToDefaultState = () => ({
   type: RESET_RESULTS_TO_DEFAULT_STATE,
+});
+
+export const resetSelectedToDefaultState = () => ({
+  type: RESET_SELECTED_TO_DEFAULT_STATE,
 });

@@ -9,9 +9,15 @@ const INITIAL_STATE = [];
 function filmReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case DISCOVER_FILMS_SUCCESS:
-      return [...state, ...action.films];
+      return [
+        ...state,
+        ...action.films.filter(film => film.poster_path),
+      ];
     case SEARCH_FILMS_SUCCESS:
-      return [...state, ...action.films];
+      return [
+        ...state,
+        ...action.films.filter(film => film.poster_path),
+      ];
     case RESET_RESULTS_TO_DEFAULT_STATE:
       return INITIAL_STATE;
     default:

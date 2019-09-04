@@ -1,22 +1,24 @@
 .film-details-container {
-    width: 100%;
-    margin: 2em 0;
+    max-width: 700px;
+    padding: 2em 1em;
     display: grid;
-    grid-template-columns: repeat(2, 40fr);
-    grid-gap: 1em;
-    justify-content: center;
-    
+    grid-auto-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
+    grid-auto-flow: column;
+    justify-self: center;  
 }
 
 .film-poster {
     justify-self: end;
+
 }
 
 .film-info {
-   display: flex;
-   flex-direction: column;
+    padding: 0 1em;
+    display: grid;
+    grid-auto-flow: row;
+    align-content: start; 
 }
 
 .film-overview {
-    width: 
 }
