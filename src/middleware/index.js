@@ -30,10 +30,14 @@ const apiMiddleware = store => next => async action => {
   }
   if (action.type === LOAD_DISCOVER_FILMS) {
     try {
-      const { results: films } = await (await fetch(
+      const {
+        results: films,
+        total_pages: totalPages,
+        page,
+      } = await (await fetch(
         config.discoverUrl(action.page),
       )).json();
-      return next(discoverFilmsSuccess(films));
+      return next(discoverFilmsSuccess(films, !(page === totalPages)));
     } catch (e) {
       return next(discoverFilmsError(e.message));
     }
@@ -41,10 +45,14 @@ const apiMiddleware = store => next => async action => {
 
   if (action.type === LOAD_SEARCH_FILMS) {
     try {
-      const { results: films } = await (await fetch(
+      const {
+        results: films,
+        total_pages: totalPages,
+        page,
+      } = await (await fetch(
         config.searchUrl(action.query, action.page),
       )).json();
-      return next(searchFilmsSuccess(films));
+      return next(searchFilmsSuccess(films, !(page === totalPages)));
     } catch (e) {
       return next(searchFilmsError(e.message));
     }

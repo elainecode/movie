@@ -4,7 +4,7 @@ import { findGenre } from '../../helpers';
 import Film from '../Film';
 import './FilmList.css';
 
-const FilmList = ({ films, clickFilm, loadMore, genres, match }) => {
+const FilmList = ({ films, clickFilm, loadMore, genres, match, hasMore }) => {
   const movies = [];
 
   films.map(film => {
@@ -24,9 +24,9 @@ const FilmList = ({ films, clickFilm, loadMore, genres, match }) => {
 
   return (
     <InfiniteScroll
-      pageStart={1}
+      pageStart={0}
       loadMore={loadMore}
-      hasMore
+      hasMore={hasMore}
       loader={(
 <div className="loader" key={0}>
           Loading ...

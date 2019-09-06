@@ -25,9 +25,10 @@ export const loadGenres = () => ({
   type: LOAD_GENRES,
 });
 
-export const discoverFilmsSuccess = films => ({
+export const discoverFilmsSuccess = (films, hasMore) => ({
   type: DISCOVER_FILMS_SUCCESS,
   films,
+  hasMore,
 });
 
 export const genresSuccess = genres => ({
@@ -51,9 +52,10 @@ export const loadSearchFilms = (query, page) => ({
   page,
 });
 
-export const searchFilmsSuccess = films => ({
+export const searchFilmsSuccess = (films, hasMore) => ({
   type: SEARCH_FILMS_SUCCESS,
   films,
+  hasMore,
 });
 
 export const searchFilmsError = error => ({

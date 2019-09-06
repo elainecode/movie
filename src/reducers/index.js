@@ -4,7 +4,7 @@ import genreReducer from './genreReducer';
 import selectedFilmReducer from './selectedFilmReducer';
 
 const rootReducer = combineReducers({
-  films: filmReducer,
+  api: filmReducer,
   genres: genreReducer,
   selectedFilm: selectedFilmReducer,
 });

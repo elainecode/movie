@@ -37,7 +37,7 @@ class App extends Component {
   };
 
   render() {
-    const { films, genres } = this.props;
+    const { api: { films, hasMore } = {films: [], hasMore: true}, genres } = this.props;
     const { clickFilm, searchFilms } = this;
     return (
       <>
@@ -67,6 +67,7 @@ class App extends Component {
                 <SearchFilms
                   films={films}
                   genres={genres}
+                  hasMore={hasMore}
                   clickFilm={clickFilm}
                   {...routerProps}
                 />
@@ -80,6 +81,7 @@ class App extends Component {
                 <Filter count={films && films.length} />
                 <DiscoverFilms
                   films={films}
+                  hasMore={hasMore}
                   genres={genres}
                   clickFilm={clickFilm}
                   {...routerProps}
@@ -97,7 +99,9 @@ class App extends Component {
 const DiscoverFilms = DiscoverFilmsHoc(FilmList);
 const SearchFilms = SearchFilmsHoc(FilmList);
 
-const mapStateToProps = ({ films, genres }) => ({ films, genres });
+const mapStateToProps = ({ api, genres }) => {
+  return { api, genres };
+};
 
 export default connect(
   mapStateToProps,
