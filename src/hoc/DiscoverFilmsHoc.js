@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { loadDiscoverFilms, resetResultsToDefaultState } from '../actions';
+import {
+  loadDiscoverFilms,
+  resetResultsToDefaultState,
+  sortFilmsBy,
+  resetSortByToDefaultState,
+  isLoadingFilms,
+} from '../actions';
+import Filter from '../components/Filter';
+import { ThemeProvider } from '@material-ui/styles';
 
 const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
@@ -10,20 +18,53 @@ const Hoc = ListComponent => {
     }
 
     componentWillUnmount() {
-      this.props.resetResultsToDefaultState();
+       this.props.resetResultsToDefaultState();
     }
 
-    loadMore = page => {
-      if (!this.props.match.query) {
-        this.props.loadDiscoverFilms(page);
+    loadMore = pageStart => {
+      const {
+        page,
+        sortBy,
+        loadDiscoverFilms,
+        match: { query },
+        isLoading,
+      } = this.props;
+      if (!query && !isLoading) {
+        console.log(page, 'went through');
+        loadDiscoverFilms(page + 1, sortBy);
       }
     };
 
+    changeSortBy =  e => {
+      e.preventDefault();
+      this.props.sortFilmsBy(e.target.value);
+      this.props.resetResultsToDefaultState();
+      this.props.loadDiscoverFilms(this.props.page + 1, this.props.sortBy)
+    };
+
     render() {
-      const { loadMore } = this;
+      const { loadMore, changeSortBy } = this;
+      const {
+        sortBy,
+        films,
+        totalResults,
+        hasMore,
+        isLoading,
+      } = this.props;
       return (
         <>
-          <ListComponent loadMore={loadMore} {...this.props} />
+          <Filter
+            totalResults={totalResults}
+            changeSortBy={changeSortBy}
+            sortBy={sortBy}
+          />
+          <ListComponent
+            loadMore={loadMore}
+            hasMore={hasMore}
+            films={films}
+            isLoading={isLoading}
+            {...this.props}
+          />
         </>
       );
     }
@@ -31,12 +72,20 @@ const Hoc = ListComponent => {
   return DiscoverFilmsHoc;
 };
 
+const mapStateToProps = ({ totalResults, isLoading, sortBy }) => ({
+  totalResults,
+  isLoading,
+  sortBy,
+});
 const DiscoverFilmsHoc = compose(
   connect(
-    null,
+    mapStateToProps,
     {
       loadDiscoverFilms,
       resetResultsToDefaultState,
+      sortFilmsBy,
+      resetSortByToDefaultState,
+      isLoadingFilms,
     },
   ),
   Hoc,

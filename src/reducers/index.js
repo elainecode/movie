@@ -2,11 +2,18 @@ import { combineReducers } from 'redux';
 import filmReducer from './filmReducer';
 import genreReducer from './genreReducer';
 import selectedFilmReducer from './selectedFilmReducer';
+import sortByReducer from './sortByReducer';
+import totalResultsReducer from './totalResultsReducer';
+import isLoadingReducer from './isLoadingReducer';
+
 
 const rootReducer = combineReducers({
-  films: filmReducer,
+  api: filmReducer,
   genres: genreReducer,
   selectedFilm: selectedFilmReducer,
+  sortBy: sortByReducer,
+  totalResults: totalResultsReducer,
+  isLoading: isLoadingReducer,
 });
 
 export default rootReducer;

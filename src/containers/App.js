@@ -15,7 +15,7 @@ import DiscoverFilmsHoc from '../hoc/DiscoverFilmsHoc';
 import SearchFilmsHoc from '../hoc/SearchFilmsHoc';
 import SelectedFilmPage from './SelectedFilmPage';
 import FilmList from '../components/FilmList';
-import Filter from '../components/Filter';
+
 
 class App extends Component {
   async componentDidMount() {
@@ -36,9 +36,11 @@ class App extends Component {
     this.props.loadSelectedFilm(id);
   };
 
+
+
   render() {
-    const { films, genres } = this.props;
-    const { clickFilm, searchFilms } = this;
+    const { api: { films, page, hasMore } = {films: [], page: 0, hasMore: true}, genres } = this.props;
+    const { clickFilm, searchFilms, changeSortBy } = this;
     return (
       <>
         <Redirect exact from="/" to="home" />
@@ -63,9 +65,10 @@ class App extends Component {
             path="/search/:query"
             render={routerProps => (
               <>
-                <Filter count={films && films.length} />
                 <SearchFilms
                   films={films}
+                  page={page}
+                  hasMore={hasMore}
                   genres={genres}
                   clickFilm={clickFilm}
                   {...routerProps}
@@ -77,9 +80,10 @@ class App extends Component {
             path="/home"
             render={routerProps => (
               <>
-                <Filter count={films && films.length} />
                 <DiscoverFilms
                   films={films}
+                  page={page}
+                  hasMore={hasMore}
                   genres={genres}
                   clickFilm={clickFilm}
                   {...routerProps}
@@ -97,7 +101,10 @@ class App extends Component {
 const DiscoverFilms = DiscoverFilmsHoc(FilmList);
 const SearchFilms = SearchFilmsHoc(FilmList);
 
-const mapStateToProps = ({ films, genres }) => ({ films, genres });
+const mapStateToProps = ({ api, genres, sortBy }) => {
+  return { api, genres, sortBy };
+};
+
 
 export default connect(
   mapStateToProps,
@@ -106,5 +113,6 @@ export default connect(
     resetResultsToDefaultState,
     loadSelectedFilm,
     updateForm,
+    loadSearchFilms,
   },
 )(App);

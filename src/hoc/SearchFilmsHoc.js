@@ -4,45 +4,81 @@ import { connect } from 'react-redux';
 import {
   loadSearchFilms,
   resetResultsToDefaultState,
+  sortFilmsBy,
+  resetSortByToDefaultState,
+  isLoadingFilms,
 } from '../actions';
+import Filter from '../components/Filter';
 
 const Hoc = ListComponent => {
   class SearchFilmsHoc extends Component {
     componentDidMount() {
-      this.props.resetResultsToDefaultState();
     }
+
 
     componentWillUnmount() {
       this.props.resetResultsToDefaultState();
     }
 
-    loadMore = page => {
-      if (this.props.match.params.query) {
-        this.props.loadSearchFilms(
-          this.props.match.params.query,
-          page,
-        );
+    loadMore = pageStart => {
+      const {
+        page,
+        sortBy,
+        loadSearchFilms,
+        match: {
+          params: { query },
+        },
+        isLoading,
+      } = this.props;
+
+      if (query && !isLoading) {
+        loadSearchFilms(query, page + 1);
       }
     };
 
     render() {
       const { loadMore } = this;
+      const {
+        films,
+        totalResults,
+        hasMore,
+        changeSortBy,
+        isLoading,
+        sortBy,
+      } = this.props;
       return (
         <>
-          <ListComponent loadMore={loadMore} {...this.props} />
+          <Filter
+            totalResults={totalResults}
+            changeSortBy={null}
+            sortBy={sortBy}
+          />
+          <ListComponent
+            loadMore={loadMore}
+            hasMore={hasMore}
+            isLoading={isLoading}
+            films={films}
+            {...this.props}
+          />
         </>
       );
     }
   }
   return SearchFilmsHoc;
 };
-
+const mapStateToProps = ({ totalResults, isLoading }) => ({
+  totalResults,
+  isLoading,
+});
 const SearchFilmsHoc = compose(
   connect(
-    null,
+    mapStateToProps,
     {
       loadSearchFilms,
       resetResultsToDefaultState,
+      sortFilmsBy,
+      resetSortByToDefaultState,
+      isLoadingFilms,
     },
   ),
   Hoc,

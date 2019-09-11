@@ -20,7 +20,7 @@ const Film = ({
   match,
 }) => {
   return (
-    <div className="scroll-click-event">
+    <div id={id} className="scroll-click-event">
       <Card onClick={clickFilm(id)}>
         <CardActionArea>
           <Link to={`${match.url}/films/${id}`}>
@@ -33,7 +33,7 @@ const Film = ({
           <CardContent>
             <div className="card-content-top">
               <Typography variant="subtitle2">{title}</Typography>
-              <Typography variant="subtitle2">{year}</Typography>
+              <Typography variant="subtitle2"><span className="year">{year}</span></Typography>
             </div>
             <Typography variant="body2">
               {genres.join(', ')}
