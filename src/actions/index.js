@@ -13,20 +13,28 @@ import {
   GENRES_ERROR,
   UPDATE_FORM,
   RESET_RESULTS_TO_DEFAULT_STATE,
+  RESET_SELECTED_TO_DEFAULT_STATE,
+  SORT_FILMS_BY,
+  RESET_SORTED_BY_TO_DEFAULT_STATE,
+  TOTAL_RESULTS,
+  IS_LOADING,
 } from './actionTypes';
 
-export const loadDiscoverFilms = page => ({
+export const loadDiscoverFilms = (page, sortBy) => ({
   type: LOAD_DISCOVER_FILMS,
   page,
+  sortBy,
 });
 
 export const loadGenres = () => ({
   type: LOAD_GENRES,
 });
 
-export const discoverFilmsSuccess = films => ({
+export const discoverFilmsSuccess = (films, page, hasMore) => ({
   type: DISCOVER_FILMS_SUCCESS,
   films,
+  page,
+  hasMore,
 });
 
 export const genresSuccess = genres => ({
@@ -44,15 +52,18 @@ export const genresError = error => ({
   error,
 });
 
-export const loadSearchFilms = (query, page) => ({
+export const loadSearchFilms = (query, page, sortBy) => ({
   type: LOAD_SEARCH_FILMS,
   query,
   page,
+  sortBy,
 });
 
-export const searchFilmsSuccess = films => ({
+export const searchFilmsSuccess = (films, page, hasMore) => ({
   type: SEARCH_FILMS_SUCCESS,
   films,
+  page,
+  hasMore,
 });
 
 export const searchFilmsError = error => ({
@@ -82,4 +93,27 @@ export const updateForm = form => ({
 
 export const resetResultsToDefaultState = () => ({
   type: RESET_RESULTS_TO_DEFAULT_STATE,
+});
+
+export const resetSelectedToDefaultState = () => ({
+  type: RESET_SELECTED_TO_DEFAULT_STATE,
+});
+
+export const resetSortByToDefaultState = () => ({
+  type: RESET_SORTED_BY_TO_DEFAULT_STATE,
+});
+
+export const sortFilmsBy = sortBy => ({
+  type: SORT_FILMS_BY,
+  sortBy,
+});
+
+export const totalResults = count => ({
+  type: TOTAL_RESULTS,
+  count,
+});
+
+export const isLoadingFilms = (bool) => ({
+  type: IS_LOADING,
+  bool,
 });

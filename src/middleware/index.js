@@ -14,6 +14,8 @@ import {
   searchFilmsError,
   selectedFilmSuccess,
   selectedFilmError,
+  totalResults,
+  isLoadingFilms,
 } from '../actions';
 
 import { config } from './config';
@@ -29,30 +31,58 @@ const apiMiddleware = store => next => async action => {
     }
   }
   if (action.type === LOAD_DISCOVER_FILMS) {
+   next(isLoadingFilms(true));
     try {
-      const { results: films } = await (await fetch(
-        config.discoverUrl(action.page),
+      const {
+        results: films,
+        total_pages: totalPages,
+        total_results: count,
+        page,
+      } = await (await fetch(
+        config.discoverUrl(action.page, action.sortBy),
       )).json();
-      return next(discoverFilmsSuccess(films));
+      next(totalResults(count));
+      next(
+        discoverFilmsSuccess(
+          films,
+          page,
+          !(page === totalPages || films.length === 0),
+        ),
+      );
     } catch (e) {
       return next(discoverFilmsError(e.message));
     }
+    return next(isLoadingFilms(false));
   }
 
   if (action.type === LOAD_SEARCH_FILMS) {
+    next(isLoadingFilms(true));
     try {
-      const { results: films } = await (await fetch(
+      const {
+        results: films,
+        total_pages: totalPages,
+        total_results: count,
+        page,
+      } = await (await fetch(
         config.searchUrl(action.query, action.page),
       )).json();
-      return next(searchFilmsSuccess(films));
+      next(totalResults(count));
+      next(
+        searchFilmsSuccess(
+          films,
+          page,
+          !(page === totalPages || films.length === 0),
+        ),
+      );
     } catch (e) {
       return next(searchFilmsError(e.message));
     }
+    return next(isLoadingFilms(false));
   }
 
   if (action.type === LOAD_SELECTED_FILM) {
     if (config.visitedFilms.hasOwnProperty(action.id)) {
-      let selectedFilm = config.visitedFilms[action.id];
+      const selectedFilm = config.visitedFilms[action.id];
       return next(selectedFilmSuccess(selectedFilm));
     }
     try {

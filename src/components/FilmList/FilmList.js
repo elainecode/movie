@@ -1,37 +1,45 @@
 import React from 'react';
+import { CircularProgress } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroller';
 import { findGenre } from '../../helpers';
 import Film from '../Film';
 import './FilmList.css';
+import isLoadingReducer from '../../reducers/isLoadingReducer';
 
-const FilmList = ({ films, clickFilm, loadMore, genres, match }) => {
+const FilmList = ({
+  films,
+  clickFilm,
+  loadMore,
+  genres,
+  match,
+  hasMore,
+  isLoading,
+}) => {
   const movies = [];
-
   films.map(film => {
     movies.push(
-      film.poster_path && (
-        <Film
-          key={film.id}
-          title={film.title}
-          year={film.release_date.slice(0, 4)}
-          id={film.id}
-          image_id={film.poster_path}
-          genres={findGenre(film.genre_ids, genres)}
-          clickFilm={clickFilm}
-          match={match}
-        />
-      ),
+      <Film
+        key={film.id}
+        title={film.title}
+        year={film.release_date.slice(0, 4)}
+        id={film.id}
+        image_id={film.poster_path}
+        genres={findGenre(film.genre_ids, genres)}
+        clickFilm={clickFilm}
+        match={match}
+      />,
     );
   });
 
   return (
     <InfiniteScroll
-      pageStart={1}
+      pageStart={0}
       loadMore={loadMore}
-      hasMore
+      hasMore={hasMore}
+      initialLoad={!isLoading}
       loader={
                 <div className="loader" key={0}>
-          Loading ...
+          <CircularProgress />
         </div>
       }
     >

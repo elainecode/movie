@@ -17,8 +17,8 @@ config.visitedFilms = JSON.parse(
 
 config.genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${config.API_KEY}&language=en-US`;
 
-config.discoverUrl = pageNumber => {
-  return `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&sort_by=popularity.desc&page=${pageNumber}`;
+config.discoverUrl = (pageNumber, sortBy) => {
+  return `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&sort_by=popularity.desc&page=${pageNumber}&sort_by=${sortBy}`;
 };
 
 config.searchUrl = (query, pageNumber) => {
