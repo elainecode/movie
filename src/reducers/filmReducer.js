@@ -10,18 +10,18 @@ const INITIAL_STATE = {
   hasMore: true,
 };
 
-
 function filmReducer(
   state = INITIAL_STATE,
-  { type, films: actionFilms, page, hasMore }) {
+  { type, films: actionFilms, page, hasMore },
+) {
   const { films } = state;
   switch (type) {
-
     case DISCOVER_FILMS_SUCCESS:
       return {
         films: [
           ...films,
-          ...actionFilms.filter(({ poster_path }) => (poster_path))],
+          ...actionFilms.filter(({ poster_path }) => poster_path),
+        ],
         page,
         hasMore,
       };
@@ -30,7 +30,8 @@ function filmReducer(
       return {
         films: [
           ...films,
-          ...actionFilms.filter(({ poster_path }) => (poster_path))],
+          ...actionFilms.filter(({ poster_path }) => poster_path),
+        ],
         page,
         hasMore,
       };
