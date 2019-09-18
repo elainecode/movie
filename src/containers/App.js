@@ -16,7 +16,6 @@ import SearchFilmsHoc from '../hoc/SearchFilmsHoc';
 import SelectedFilmPage from './SelectedFilmPage';
 import FilmList from '../components/FilmList';
 
-
 class App extends Component {
   async componentDidMount() {
     await config.setApiKey();
@@ -36,10 +35,15 @@ class App extends Component {
     this.props.loadSelectedFilm(id);
   };
 
-
-
   render() {
-    const { api: { films, page, hasMore } = {films: [], page: 0, hasMore: true}, genres } = this.props;
+    const {
+      api: { films, page, hasMore } = {
+        films: [],
+        page: 0,
+        hasMore: true,
+      },
+      genres,
+    } = this.props;
     const { clickFilm, searchFilms, changeSortBy } = this;
     return (
       <>
@@ -104,7 +108,6 @@ const SearchFilms = SearchFilmsHoc(FilmList);
 const mapStateToProps = ({ api, genres, sortBy }) => {
   return { api, genres, sortBy };
 };
-
 
 export default connect(
   mapStateToProps,
