@@ -12,7 +12,7 @@ describe('INITIAL_STATE', () => {
 });
 
 describe('TOTAL_RESULTS', () => {
-  test('returns correct state when action type = TOTAL_RESULTS', () => {
+  test('returns correct state when action type is TOTAL_RESULTS', () => {
     const action = {
       type: TOTAL_RESULTS,
       count: 55,

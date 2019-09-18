@@ -15,7 +15,7 @@ describe('INITIAL_STATE', () => {
 });
 
 describe('SELECTED_FILM_SUCCESS', () => {
-  test('returns correct state when action type = SELECTED_FILM_SUCCESS', () => {
+  test('returns correct state when action type is SELECTED_FILM_SUCCESS', () => {
     const action = {
       type: SELECTED_FILM_SUCCESS,
       film: { selected: 'selected film' },
@@ -31,7 +31,7 @@ describe('SELECTED_FILM_SUCCESS', () => {
 });
 
 describe('RESET_SELECTED_TO_DEFAULT_STATE', () => {
-  test('returns correct state when action type = RESET_SELECTED_TO_DEFAULT_STATE', () => {
+  test('returns correct state when action type is RESET_SELECTED_TO_DEFAULT_STATE', () => {
     const action = {
       type: RESET_SELECTED_TO_DEFAULT_STATE,
     };

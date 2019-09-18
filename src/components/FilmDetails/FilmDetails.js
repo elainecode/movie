@@ -66,11 +66,11 @@ const FilmDetails = ({ film, genres, anchorEl }) => {
                 <span className="film-overview">{film.overview}</span>
               </Typography>
               <Typography gutterBottom variant="body2">
-                <Typography variant="subtitle2">Director</Typography>
+                <Typography component="span" variant="subtitle2">Director</Typography>
                 {`${film.director}`}
               </Typography>
               <Typography gutterBottom variant="body2">
-                <Typography variant="subtitle2">Cast</Typography>
+                <Typography component="span" variant="subtitle2">Cast</Typography>
                 {film.cast ? `${film.cast.join(' ')}` : ' '}
               </Typography>
             </div>

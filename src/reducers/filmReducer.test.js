@@ -19,7 +19,7 @@ describe('INITIAL_STATE', () => {
 });
 
 describe('SEARCH_FILMS_SUCCESS', () => {
-  test('returns correct state when action type = SEARCH_FILMS_SUCCESS', () => {
+  test('returns correct state when action type is SEARCH_FILMS_SUCCESS', () => {
     const action = {
       type: SEARCH_FILMS_SUCCESS,
       films: [{ poster_path: 'url' }, {}],
@@ -37,7 +37,7 @@ describe('SEARCH_FILMS_SUCCESS', () => {
 });
 
 describe('DISCOVER_FILMS_SUCCESS', () => {
-  test('returns correct state when action type = DISCOVER_FILMS_SUCCESS', () => {
+  test('returns correct state when action type is DISCOVER_FILMS_SUCCESS', () => {
     const action = {
       type: DISCOVER_FILMS_SUCCESS,
       films: [{ poster_path: 'url' }, {}],
@@ -55,7 +55,7 @@ describe('DISCOVER_FILMS_SUCCESS', () => {
 });
 
 describe('RESET_RESULTS_TO_DEFAULT_STATE', () => {
-  test('returns correct state when action type = RESET_RESULTS_TO_DEFAULT_STATE', () => {
+  test('returns correct state when action type is RESET_RESULTS_TO_DEFAULT_STATE', () => {
     const action = { type: RESET_RESULTS_TO_DEFAULT_STATE };
     const INITIAL_STATE = {
       films: [],
