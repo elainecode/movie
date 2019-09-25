@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Film/> renders the component 1`] = `
+<div
+  className="scroll-click-event"
+  id={5}
+>
+  <WithStyles(ForwardRef(Card))>
+    <WithStyles(ForwardRef(CardActionArea))>
+      <Link
+        to="/home/films/5"
+      >
+        <WithStyles(ForwardRef(CardMedia))
+          id="list-item-image"
+          image="https://image.tmdb.org/t/p/w300_and_h450_bestv2undefined"
+          title=""
+        />
+      </Link>
+      <WithStyles(ForwardRef(CardContent))>
+        <div
+          className="card-content-top"
+        >
+          <WithStyles(ForwardRef(Typography))
+            variant="subtitle2"
+          />
+          <WithStyles(ForwardRef(Typography))
+            variant="subtitle2"
+          >
+            <span
+              className="year"
+            />
+          </WithStyles(ForwardRef(Typography))>
+        </div>
+        <WithStyles(ForwardRef(Typography))
+          variant="body2"
+        />
+      </WithStyles(ForwardRef(CardContent))>
+    </WithStyles(ForwardRef(CardActionArea))>
+  </WithStyles(ForwardRef(Card))>
+</div>
+`;
