@@ -6,7 +6,6 @@ import {
   resetResultsToDefaultState,
   sortFilmsBy,
   resetSortByToDefaultState,
-  isLoadingFilms,
 } from '../actions';
 import Filter from '../components/Filter';
 
@@ -44,6 +43,7 @@ const Hoc = ListComponent => {
         hasMore,
         changeSortBy,
         isLoading,
+        error,
         sortBy,
       } = this.props;
       return (
@@ -57,6 +57,7 @@ const Hoc = ListComponent => {
             loadMore={loadMore}
             hasMore={hasMore}
             isLoading={isLoading}
+            error={error}
             films={films}
             {...this.props}
           />
@@ -66,9 +67,10 @@ const Hoc = ListComponent => {
   }
   return SearchFilmsHoc;
 };
-const mapStateToProps = ({ totalResults, isLoading }) => ({
+const mapStateToProps = ({ totalResults,   loadingBooleans: { isLoading, error }, }) => ({
   totalResults,
   isLoading,
+  error,
 });
 const SearchFilmsHoc = compose(
   connect(
@@ -78,7 +80,6 @@ const SearchFilmsHoc = compose(
       resetResultsToDefaultState,
       sortFilmsBy,
       resetSortByToDefaultState,
-      isLoadingFilms,
     },
   ),
   Hoc,

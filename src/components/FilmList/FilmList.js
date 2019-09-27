@@ -14,6 +14,7 @@ const FilmList = ({
   match,
   hasMore,
   isLoading,
+  error,
 }) => {
   const movies = [];
   films.map(film => {
@@ -32,19 +33,25 @@ const FilmList = ({
   });
 
   return (
-    <InfiniteScroll
-      pageStart={0}
-      loadMore={loadMore}
-      hasMore={hasMore}
-      initialLoad={!isLoading}
-      loader={
-                <div className="loader" key={0}>
-          <CircularProgress />
-        </div>
-      }
-    >
-      <div className="list">{movies}</div>
-    </InfiniteScroll>
+    <>
+      {!films.length && !!error ? (
+        <h1>NO FILMS FOUND</h1>
+      ) : (
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadMore}
+          hasMore={hasMore}
+          initialLoad={!isLoading}
+          loader={
+             <div className="loader" key={0}>
+             <CircularProgress />
+               </div>
+              }
+              >
+          <div className="list">{movies}</div>
+        </InfiniteScroll>
+      )}
+    </>
   );
 };
 

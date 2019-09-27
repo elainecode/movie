@@ -18,6 +18,7 @@ import {
   RESET_SORTED_BY_TO_DEFAULT_STATE,
   TOTAL_RESULTS,
   IS_LOADING,
+  IS_LOADING_ERROR,
 } from './actionTypes';
 
 export const loadDiscoverFilms = (page, sortBy) => ({
@@ -113,7 +114,12 @@ export const totalResults = count => ({
   count,
 });
 
-export const isLoadingFilms = (bool) => ({
+export const isLoadingFilms = error => ({
   type: IS_LOADING,
-  bool,
+  error,
+});
+
+export const isLoadingError = error => ({
+  type: IS_LOADING_ERROR,
+  error,
 });

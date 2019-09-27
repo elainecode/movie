@@ -8,14 +8,13 @@ import {
 import {
   discoverFilmsSuccess,
   genresSuccess,
-  discoverFilmsError,
   genresError,
   searchFilmsSuccess,
-  searchFilmsError,
   selectedFilmSuccess,
   selectedFilmError,
   totalResults,
   isLoadingFilms,
+  isLoadingError,
 } from '../actions';
 
 import { config } from './config';
@@ -31,7 +30,7 @@ const apiMiddleware = store => next => async action => {
     }
   }
   if (action.type === LOAD_DISCOVER_FILMS) {
-   next(isLoadingFilms(true));
+    next(isLoadingFilms(true));
     try {
       const {
         results: films,
@@ -42,15 +41,19 @@ const apiMiddleware = store => next => async action => {
         config.discoverUrl(action.page, action.sortBy),
       )).json();
       next(totalResults(count));
-      next(
-        discoverFilmsSuccess(
-          films,
-          page,
-          !(page === totalPages || films.length === 0),
-        ),
-      );
+      if (films.length === 0) {
+        next(isLoadingError(true));
+      } else {
+        next(
+          discoverFilmsSuccess(
+            films,
+            page,
+            !(page === totalPages || films.length === 0),
+          ),
+        );
+      }
     } catch (e) {
-      return next(discoverFilmsError(e.message));
+      return next(isLoadingError(true));
     }
     return next(isLoadingFilms(false));
   }
@@ -67,15 +70,19 @@ const apiMiddleware = store => next => async action => {
         config.searchUrl(action.query, action.page),
       )).json();
       next(totalResults(count));
-      next(
-        searchFilmsSuccess(
-          films,
-          page,
-          !(page === totalPages || films.length === 0),
-        ),
-      );
+      if (films.length === 0) {
+        next(isLoadingError(true));
+      } else {
+        next(
+          searchFilmsSuccess(
+            films,
+            page,
+            !(page === totalPages || films.length === 0),
+          ),
+        );
+      }
     } catch (e) {
-      return next(searchFilmsError(e.message));
+      return next(isLoadingError(true));
     }
     return next(isLoadingFilms(false));
   }

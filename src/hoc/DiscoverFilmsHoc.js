@@ -6,10 +6,8 @@ import {
   resetResultsToDefaultState,
   sortFilmsBy,
   resetSortByToDefaultState,
-  isLoadingFilms,
 } from '../actions';
 import Filter from '../components/Filter';
-import { ThemeProvider } from '@material-ui/styles';
 
 const Hoc = ListComponent => {
   class DiscoverFilmsHoc extends Component {
@@ -18,7 +16,7 @@ const Hoc = ListComponent => {
     }
 
     componentWillUnmount() {
-       this.props.resetResultsToDefaultState();
+      this.props.resetResultsToDefaultState();
     }
 
     loadMore = pageStart => {
@@ -30,16 +28,18 @@ const Hoc = ListComponent => {
         isLoading,
       } = this.props;
       if (!query && !isLoading) {
-        console.log(page, 'went through');
         loadDiscoverFilms(page + 1, sortBy);
       }
     };
 
-    changeSortBy =  e => {
+    changeSortBy = e => {
       e.preventDefault();
       this.props.sortFilmsBy(e.target.value);
       this.props.resetResultsToDefaultState();
-      this.props.loadDiscoverFilms(this.props.page + 1, this.props.sortBy)
+      this.props.loadDiscoverFilms(
+        this.props.page + 1,
+        this.props.sortBy,
+      );
     };
 
     render() {
@@ -50,6 +50,7 @@ const Hoc = ListComponent => {
         totalResults,
         hasMore,
         isLoading,
+        error,
       } = this.props;
       return (
         <>
@@ -63,6 +64,7 @@ const Hoc = ListComponent => {
             hasMore={hasMore}
             films={films}
             isLoading={isLoading}
+            error={error}
             {...this.props}
           />
         </>
@@ -72,9 +74,14 @@ const Hoc = ListComponent => {
   return DiscoverFilmsHoc;
 };
 
-const mapStateToProps = ({ totalResults, isLoading, sortBy }) => ({
+const mapStateToProps = ({
+  totalResults,
+  loadingBooleans: { isLoading, error },
+  sortBy,
+}) => ({
   totalResults,
   isLoading,
+  error,
   sortBy,
 });
 const DiscoverFilmsHoc = compose(
@@ -85,7 +92,6 @@ const DiscoverFilmsHoc = compose(
       resetResultsToDefaultState,
       sortFilmsBy,
       resetSortByToDefaultState,
-      isLoadingFilms,
     },
   ),
   Hoc,

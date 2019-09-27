@@ -6,14 +6,13 @@ import sortByReducer from './sortByReducer';
 import totalResultsReducer from './totalResultsReducer';
 import isLoadingReducer from './isLoadingReducer';
 
-
 const rootReducer = combineReducers({
   api: filmReducer,
   genres: genreReducer,
   selectedFilm: selectedFilmReducer,
   sortBy: sortByReducer,
   totalResults: totalResultsReducer,
-  isLoading: isLoadingReducer,
+  loadingBooleans: isLoadingReducer,
 });
 
 export default rootReducer;
