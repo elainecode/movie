@@ -14,6 +14,7 @@ function filmReducer(
   state = INITIAL_STATE,
   { type, films: actionFilms, page, hasMore },
 ) {
+  console.log(actionFilms);
   const { films } = state;
   switch (type) {
     case DISCOVER_FILMS_SUCCESS:

@@ -19,16 +19,15 @@ const Hoc = ListComponent => {
       this.props.resetResultsToDefaultState();
     }
 
-    loadMore = pageStart => {
+    loadMore = pageNumber => {
       const {
-        page,
         sortBy,
         loadDiscoverFilms,
         match: { query },
         isLoading,
       } = this.props;
       if (!query && !isLoading) {
-        loadDiscoverFilms(page + 1, sortBy);
+        loadDiscoverFilms(pageNumber, sortBy);
       }
     };
 
