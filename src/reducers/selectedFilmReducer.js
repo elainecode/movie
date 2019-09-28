@@ -1,11 +1,17 @@
-import { SELECTED_FILM_SUCCESS, RESET_SELECTED_TO_DEFAULT_STATE } from '../actions/actionTypes';
+import { SELECTED_FILM_SUCCESS, RESET_SELECTED_TO_DEFAULT_STATE, LOAD_SELECTED_FILM, SELECTED_FILM_FAILURE } from '../actions/actionTypes';
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  loading: false,
+};
 
 function selectedFilmReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case LOAD_SELECTED_FILM:
+      return { loading: true };
     case SELECTED_FILM_SUCCESS:
-      return { ...action.film };
+      return { ...action.film, loading: false };
+    case SELECTED_FILM_FAILURE:
+      return { loading: false };
     case RESET_SELECTED_TO_DEFAULT_STATE:
       return INITIAL_STATE;
     default:

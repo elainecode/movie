@@ -5,15 +5,15 @@ config.setApiKey = async () => {
   localStorage.setItem('apiKey', API_KEY);
 };
 
-config.setVisitedFilms = () => {
-  localStorage.setItem('visitedFilms', JSON.stringify({}));
-};
+// config.setVisitedFilms = () => {
+//   localStorage.setItem('visitedFilms', JSON.stringify({}));
+// };
 
 config.API_KEY = localStorage.getItem('apiKey');
 
-config.visitedFilms = JSON.parse(
-  localStorage.getItem('visitedFilms') || '{}',
-);
+// config.visitedFilms = JSON.parse(
+//   localStorage.getItem('visitedFilms') || '{}',
+// );
 
 config.genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${config.API_KEY}&language=en-US`;
 

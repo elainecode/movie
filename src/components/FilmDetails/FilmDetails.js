@@ -8,7 +8,7 @@ import {
 import { findGenre } from '../../helpers';
 import './FilmDetails.css';
 
-const FilmDetails = ({ film, genres, anchorEl }) => {
+const FilmDetails = ({ film, genres, anchorEl, loading }) => {
   return (
     <>
       <Popover
@@ -27,6 +27,7 @@ const FilmDetails = ({ film, genres, anchorEl }) => {
         {Object.keys(film).length ? (
           <div className="film-details-container">
             <div className="film-poster">
+              {{loading}}
               <img
                 src={
                   film.poster_path &&

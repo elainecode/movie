@@ -31,6 +31,7 @@ describe('<SelectedFilmPage/>', () => {
         genres: [28, 87, 14],
         cast: ['name1', 'name2', 'name3'],
       },
+      loading: false,
       loadSelectedFilm,
       resetSelectedToDefaultState,
     });
