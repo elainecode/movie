@@ -78,10 +78,10 @@ class SelectedFilmPage extends Component {
     e.preventDefault();
     switch (e.key) {
       case 'ArrowLeft':
-        this.arrowLeft();
+        this.arrowPress('left');
         break;
       case 'ArrowRight':
-        this.arrowRight();
+        this.arrowPress('right');
         break;
       default:
         e.preventDefault();
@@ -89,27 +89,15 @@ class SelectedFilmPage extends Component {
     }
   };
 
-  arrowRight = e => {
+  arrowPress = direction => {
     const { selectedFilm, films, loadSelectedFilm } = this.props;
     const end = films.length - 1;
     const currIndex = films.findIndex(
       ({ id }) => id === selectedFilm.id,
     );
     if (currIndex != end) {
-      const nextFilmId = films[currIndex + 1].id;
+      const filmId = films[(direction === 'right') ? currIndex + 1 : currIndex - 1].id;
       loadSelectedFilm(nextFilmId);
-    }
-  };
-
-  arrowLeft = e => {
-    const { selectedFilm, films, loadSelectedFilm } = this.props;
-    const start = 0;
-    const currIndex = films.findIndex(
-      ({ id }) => id === selectedFilm.id,
-    );
-    if (currIndex != start) {
-      const prevFilmId = films[currIndex - 1].id;
-      loadSelectedFilm(prevFilmId);
     }
   };
 
@@ -120,6 +108,7 @@ class SelectedFilmPage extends Component {
     return (
       <>
         <FilmDetails
+          loading={loading}
           film={selectedFilm}
           genres={genres}
           anchorEl={anchorEl()}
@@ -129,8 +118,9 @@ class SelectedFilmPage extends Component {
   }
 }
 
-const mapStateToProps = ({ selectedFilm }) => ({
+const mapStateToProps = ({ selectedFilm, loading }) => ({
   selectedFilm,
+  loading,
 });
 
 export default connect(

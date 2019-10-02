@@ -19,7 +19,7 @@ import FilmList from '../components/FilmList';
 class App extends Component {
   async componentDidMount() {
     await config.setApiKey();
-    config.setVisitedFilms();
+    //config.setVisitedFilms();
     this.props.loadGenres();
   }
 

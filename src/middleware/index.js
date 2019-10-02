@@ -20,6 +20,8 @@ import {
 
 import { config } from './config';
 
+const checkIfMovieVisited = movieId => JSON.parse(localStorage.getItem(`VF${movieId}`) || null);
+
 const apiMiddleware = store => next => async action => {
   if (action.type === LOAD_GENRES) {
     try {
@@ -81,9 +83,13 @@ const apiMiddleware = store => next => async action => {
   }
 
   if (action.type === LOAD_SELECTED_FILM) {
-    if (config.visitedFilms.hasOwnProperty(action.id)) {
-      const selectedFilm = config.visitedFilms[action.id];
-      return next(selectedFilmSuccess(selectedFilm));
+    // if (config.visitedFilms.hasOwnProperty(action.id)) {
+    //   const selectedFilm = config.visitedFilms[action.id];
+    //   return next(selectedFilmSuccess(selectedFilm));
+    // }
+    const movie = checkIfMovieVisited(action.id);
+    if (movie) {
+      next(selectedFilmSuccess(movie));
     }
     try {
       const film = await (await fetch(
@@ -93,12 +99,11 @@ const apiMiddleware = store => next => async action => {
         config.movieCreditsUrl(action.id),
       )).json();
       const selectedFilm = config.combineFilmCredits(film, credits);
-      config.visitedFilms[selectedFilm.id] = { ...selectedFilm };
+      // Store to local storage
+      //config.visitedFilms[selectedFilm.id] = { ...selectedFilm };
       localStorage.setItem(
-        'visitedFilms',
-        JSON.stringify({
-          ...config.visitedFilms,
-        }),
+        `VF${action.id}`,
+        JSON.stringify({ selectedFilm }),
       );
       return next(selectedFilmSuccess(selectedFilm));
     } catch (e) {
