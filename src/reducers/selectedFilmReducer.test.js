@@ -7,7 +7,7 @@ import {
 describe('INITIAL_STATE', () => {
   test('returns initial state', () => {
     const action = { type: 'dummy_action' };
-    const INITIAL_STATE = {};
+    const INITIAL_STATE = { loading: false };
     expect(selectedFilmReducer(undefined, action)).toEqual(
       INITIAL_STATE,
     );
@@ -21,7 +21,8 @@ describe('SELECTED_FILM_SUCCESS', () => {
       film: { selected: 'selected film' },
     };
     const expectedState = {
-      selected: 'selected film',
+      ...action.film,
+      loading: false,
     };
 
     expect(selectedFilmReducer(undefined, action)).toEqual(
@@ -35,7 +36,7 @@ describe('RESET_SELECTED_TO_DEFAULT_STATE', () => {
     const action = {
       type: RESET_SELECTED_TO_DEFAULT_STATE,
     };
-    const expectedState = {};
+    const expectedState = { loading: false };
 
     expect(selectedFilmReducer(undefined, action)).toEqual(
       expectedState,

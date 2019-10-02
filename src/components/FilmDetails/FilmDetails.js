@@ -13,7 +13,7 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) => {
     <>
       <Popover
         id="popover"
-        open={!!Object.keys(film).length}
+        open={Object.keys(film).length > 1}
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: 0,
@@ -24,10 +24,9 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) => {
           horizontal: 'center',
         }}
       >
-        {Object.keys(film).length ? (
+        {!loading ? (
           <div className="film-details-container">
             <div className="film-poster">
-              {{loading}}
               <img
                 src={
                   film.poster_path &&
@@ -67,17 +66,23 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) => {
                 <span className="film-overview">{film.overview}</span>
               </Typography>
               <Typography gutterBottom variant="body2">
-                <Typography component="span" variant="subtitle2">Director</Typography>
+                <Typography component="span" variant="subtitle2">
+                  Director
+                </Typography>
                 {`${film.director}`}
               </Typography>
               <Typography gutterBottom variant="body2">
-                <Typography component="span" variant="subtitle2">Cast</Typography>
+                <Typography component="span" variant="subtitle2">
+                  Cast
+                </Typography>
                 {film.cast ? `${film.cast.join(' ')}` : ' '}
               </Typography>
             </div>
           </div>
         ) : (
-          <CircularProgress />
+          <div className="film-details-container">
+            <CircularProgress />
+          </div>
         )}
       </Popover>
     </>

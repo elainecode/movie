@@ -102,14 +102,14 @@ class SelectedFilmPage extends Component {
   };
 
   render() {
-    const { films, genres, selectedFilm } = this.props;
+    const { films, genres, selectedFilm, selectedFilm: { loading } } = this.props;
     const { anchorEl } = this;
 
     return (
       <>
         <FilmDetails
-          loading={loading}
           film={selectedFilm}
+          loading={loading}
           genres={genres}
           anchorEl={anchorEl()}
         />
@@ -118,9 +118,8 @@ class SelectedFilmPage extends Component {
   }
 }
 
-const mapStateToProps = ({ selectedFilm, loading }) => ({
+const mapStateToProps = ({ selectedFilm }) => ({
   selectedFilm,
-  loading,
 });
 
 export default connect(

@@ -23,9 +23,6 @@ const Header = ({ searchFilms }) => {
             <Link to="/home">MovieDB</Link>
           </Typography>
           <Search searchFilms={searchFilms} />
-          <ul>
-           { ["a", "b", "c"].map( item => <li>item</li>)}
-          </ul>
         </Toolbar>
       </AppBar>
     </>
