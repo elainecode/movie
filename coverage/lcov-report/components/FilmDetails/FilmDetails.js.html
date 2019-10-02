@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10% </span>
+        <span class="strong">70% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/10</span>
+        <span class='fraction'>7/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -133,7 +133,12 @@
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,8 +182,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -235,7 +245,7 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) =&gt; {
     &lt;&gt;
       &lt;Popover
         id="popover"
-        open={!!Object.keys(film).length}
+        open={Object.keys(film).length &gt; 1}
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: 0,
@@ -246,14 +256,13 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) =&gt; {
           horizontal: 'center',
         }}
       &gt;
-        {film.loading ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >          &lt;div className="film-details-container"&gt;</span>
+        {!loading ? (
+          &lt;div className="film-details-container"&gt;
             &lt;div className="film-poster"&gt;
-              {{loading}}
               &lt;img
                 src={
                   film.poster_path &amp;&amp;
-                  `https://image.tmdb.org/t/p/w300_and_h450_bestv2${film.poster_path}`
+<span class="branch-1 cbranch-no" title="branch not covered" >                  `https://image.tmdb.org/t/p/w300_and_h450_bestv2${film.poster_path}`</span>
                 }
                 alt=""
               /&gt;
@@ -265,7 +274,7 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) =&gt; {
               &lt;Typography gutterBottom variant="h6"&gt;
                 {film.genres &amp;&amp;
                   findGenre(
-                    film.genres.map(<span class="fstat-no" title="function not covered" >it</span>em =&gt; <span class="cstat-no" title="statement not covered" >item.id)</span>,
+                    film.genres.map(item =&gt; item.id),
                     genres,
                   ).join(' ')}
               &lt;/Typography&gt;
@@ -289,17 +298,23 @@ const FilmDetails = ({ film, genres, anchorEl, loading }) =&gt; {
                 &lt;span className="film-overview"&gt;{film.overview}&lt;/span&gt;
               &lt;/Typography&gt;
               &lt;Typography gutterBottom variant="body2"&gt;
-                &lt;Typography component="span" variant="subtitle2"&gt;Director&lt;/Typography&gt;
+                &lt;Typography component="span" variant="subtitle2"&gt;
+                  Director
+                &lt;/Typography&gt;
                 {`${film.director}`}
               &lt;/Typography&gt;
               &lt;Typography gutterBottom variant="body2"&gt;
-                &lt;Typography component="span" variant="subtitle2"&gt;Cast&lt;/Typography&gt;
-                {film.cast ? `${film.cast.join(' ')}` : ' '}
+                &lt;Typography component="span" variant="subtitle2"&gt;
+                  Cast
+                &lt;/Typography&gt;
+                {film.cast ? `${film.cast.join(' ')}` : <span class="branch-1 cbranch-no" title="branch not covered" >' '}</span>
               &lt;/Typography&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         ) : (
-          &lt;CircularProgress /&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >          &lt;div className="film-details-container"&gt;</span>
+            &lt;CircularProgress /&gt;
+          &lt;/div&gt;
         )}
       &lt;/Popover&gt;
     &lt;/&gt;
@@ -313,7 +328,7 @@ export default FilmDetails;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 02 2019 10:09:13 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 02 2019 11:56:48 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

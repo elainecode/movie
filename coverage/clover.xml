@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1570036153608" clover="3.2.0">
-  <project timestamp="1570036153608" name="All files">
-    <metrics statements="126" coveredstatements="68" conditionals="50" coveredconditionals="16" methods="50" coveredmethods="8" elements="226" coveredelements="92" complexity="0" loc="126" ncloc="126" packages="7" files="11" classes="11"/>
+<coverage generated="1570042609019" clover="3.2.0">
+  <project timestamp="1570042609020" name="All files">
+    <metrics statements="115" coveredstatements="69" conditionals="43" coveredconditionals="22" methods="43" coveredmethods="11" elements="201" coveredelements="102" complexity="0" loc="115" ncloc="115" packages="7" files="11" classes="11"/>
     <package name="actions">
       <metrics statements="38" coveredstatements="38" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="0"/>
       <file name="actionTypes.js" path="C:\Users\Elaine_Onuegbe\Desktop\Movie-Project\src\actions\actionTypes.js">
@@ -58,12 +58,12 @@
       </file>
     </package>
     <package name="components.FilmDetails">
-      <metrics statements="3" coveredstatements="2" conditionals="10" coveredconditionals="1" methods="2" coveredmethods="1"/>
+      <metrics statements="3" coveredstatements="3" conditionals="10" coveredconditionals="7" methods="2" coveredmethods="2"/>
       <file name="FilmDetails.js" path="C:\Users\Elaine_Onuegbe\Desktop\Movie-Project\src\components\FilmDetails\FilmDetails.js">
-        <metrics statements="3" coveredstatements="2" conditionals="10" coveredconditionals="1" methods="2" coveredmethods="1"/>
+        <metrics statements="3" coveredstatements="3" conditionals="10" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="11" count="2" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
       </file>
       <file name="index.js" path="C:\Users\Elaine_Onuegbe\Desktop\Movie-Project\src\components\FilmDetails\index.js">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -128,26 +128,15 @@
       </file>
     </package>
     <package name="helpers">
-      <metrics statements="17" coveredstatements="6" conditionals="11" coveredconditionals="3" methods="10" coveredmethods="1"/>
+      <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
       <file name="index.js" path="C:\Users\Elaine_Onuegbe\Desktop\Movie-Project\src\helpers\index.js">
-        <metrics statements="17" coveredstatements="6" conditionals="11" coveredconditionals="3" methods="10" coveredmethods="1"/>
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="7" count="1" type="stmt"/>
         <line num="14" count="3" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="3" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="7"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
       </file>
     </package>
     <package name="reducers">
@@ -166,13 +155,13 @@
       </file>
       <file name="selectedFilmReducer.js" path="C:\Users\Elaine_Onuegbe\Desktop\Movie-Project\src\reducers\selectedFilmReducer.js">
         <metrics statements="7" coveredstatements="5" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="8" count="3" type="cond" truecount="3" falsecount="2"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="3" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
       </file>
       <file name="totalResultsReducer.js" path="C:\Users\Elaine_Onuegbe\Desktop\Movie-Project\src\reducers\totalResultsReducer.js">
         <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
